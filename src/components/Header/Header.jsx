@@ -1,5 +1,5 @@
-import { login } from 'config/firebase';
 import React from 'react';
+import { login } from 'config/firebase';
 
 export default function Header() {
   const handleLogin = () => {
