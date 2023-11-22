@@ -1,5 +1,10 @@
 import React from 'react';
+import { StPtag, Stcontainer } from './styles';
 
 export default function Footer() {
-  return <div>Footer</div>;
+  return (
+    <Stcontainer>
+      <StPtag>@삼의 맹세</StPtag>
+    </Stcontainer>
+  );
 }
