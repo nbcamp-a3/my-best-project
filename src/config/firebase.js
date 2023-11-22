@@ -3,6 +3,7 @@ import { getFirestore } from 'firebase/firestore';
 import {
   GithubAuthProvider,
   getAuth,
+  onAuthStateChanged,
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
@@ -40,4 +41,10 @@ export const logout = async () => {
       return null;
     })
     .catch(console.error);
+};
+
+export const userStateChange = (callback) => {
+  onAuthStateChanged(auth, (user) => {
+    callback(user);
+  });
 };
