@@ -1,3 +1,4 @@
+import { COLORS } from 'constants/colors';
 import styled from 'styled-components';
 
 export const StAllboardContainer = styled.div`
@@ -20,11 +21,11 @@ export const StAllboardIndexBox = styled.div`
 `;
 
 export const StAllboardIndexes = styled.div`
-  border: 2px solid #e8344e;
+  border: 2px solid ${COLORS.primaryColor};
   border-radius: 10px;
   width: 200px;
   padding: 40px 0 0 0;
-  background-color: #e8344e;
+  background-color: ${COLORS.primaryColor};
   color: white;
 `;
 
@@ -38,15 +39,13 @@ export const StAllBoardList = styled.div`
 `;
 
 export const StAllBoardItem = styled.div`
-  background-color: #f9f9f9;
+  background-color: ${COLORS.itembgColor};
+  color: black;
   margin-bottom: 40px;
   margin-left: 50px;
   padding: 20px;
   width: 900px;
   border-radius: 30px;
-  /* @media only screen and (max-width: 768px) {
-    width: 100%;
-  } */
 `;
 
 export const StAllBoardNameBox = styled.div`
@@ -85,7 +84,8 @@ export const StAllboardIndex = styled.div`
 
 export const StAllBoardLikedButton = styled.button`
   border: none;
-  background-color: #f9f9f9;
+  background-color: ${COLORS.itembgColor};
+  color: black;
   font-size: 20px;
   cursor: pointer;
 `;
@@ -136,7 +136,7 @@ export const StAllBoardImagePreview = styled.div`
 
 export const StWriteButton = styled.button`
   border: none;
-  background-color: #e8344e;
+  background-color: ${COLORS.primaryColor};
   color: white;
   font-size: 15px;
   cursor: pointer;
@@ -144,7 +144,7 @@ export const StWriteButton = styled.button`
   padding: 10px 20px;
   border-radius: 50px;
   &:hover {
-    background-color: #f9f9f9;
+    background-color: ${COLORS.itembgColor};
     color: black;
   }
   width: 100px;
