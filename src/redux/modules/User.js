@@ -3,23 +3,21 @@ const USER_LOGIN = 'user/LOGIN';
 const USER_LOGOUT = 'user/LOGOUT';
 
 const initialState = {
-  currentUser: {
-    displayName: null,
-    email: null,
-    phoneNumber: null,
-    photoURL: null,
-    providerId: null,
-    uid: null,
-  },
+  user: null,
 };
 
+export const checkLoginStatus = (user) => ({
+  type: 'user/LOGGED_IN',
+  payload: user,
+});
+
 const userReducer = (state = initialState, action) => {
-  const userInfo = action?.payload?.providerData[0] ?? initialState;
+  const userInfo = action?.payload?.providerData[0] ?? null;
   switch (action.type) {
     case USER_LOGGEDIN:
-      return { currentUser: userInfo };
+      return { user: userInfo };
     case USER_LOGOUT:
-      return null;
+      return { user: null };
     case USER_LOGIN:
     default:
       return state;
