@@ -1,6 +1,12 @@
 import React from 'react';
-import BoardDetailMain from 'components/BoardDetail/BoardDetailMain';
+import BoardDetailContent from 'components/BoardDetail/BoardDetailContent';
+import { StBoardDetailMain, StGoListBtn } from 'components/BoardDetail/styles';
 
 export default function BoardDetail() {
-  return <BoardDetailMain />;
+  return (
+    <StBoardDetailMain>
+      <BoardDetailContent />
+      <StGoListBtn>목록으로</StGoListBtn>
+    </StBoardDetailMain>
+  );
 }

@@ -4,7 +4,8 @@ import { COLORS } from 'constants/colors';
 // 이름 앞 St 붙이기
 export const StBoardDetailMain = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const StImg = styled.img`
@@ -25,14 +26,6 @@ export const StAllContent = styled.div`
   border-radius: 20px;
 
   background-color: ${COLORS.itembgColor};
-`;
-
-export const StContainer = styled.div`
-  min-width: 700px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 export const StContent = styled.p`
@@ -57,9 +50,4 @@ export const StGoListBtn = styled.button`
   padding: 10px;
   border-radius: 7px;
   background-color: ${COLORS.itembgColor};
-`;
-
-export const StGoListBtnContainer = styled.div`
-  display: flex;
-  justify-content: center;
 `;
