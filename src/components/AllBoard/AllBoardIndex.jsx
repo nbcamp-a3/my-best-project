@@ -2,12 +2,12 @@ import React from 'react';
 import {
   StAllboardIndex,
   StAllboardIndexBox,
+  StAllboardIndexWrapper,
   StAllboardIndexes,
-  StWriteButton,
 } from './styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeCategory } from 'redux/modules/selectedCategory';
-import { useNavigate } from 'react-router-dom';
+
 
 const categories = [
   {
@@ -29,27 +29,27 @@ const categories = [
 ];
 
 export default function AllBoardIndex() {
-  const navigates = useNavigate();
   const dispatch = useDispatch();
+  const selectedCategory = useSelector((state) => state.selectedCategory);
   const clickCategory = (category) => {
     dispatch(changeCategory(category));
   };
 
   return (
-    <StAllboardIndexBox>
-      <StAllboardIndexes>
-        {categories.map((category, index) => (
-          <StAllboardIndex
-            onClick={() => clickCategory(category.value)}
-            key={index}
-          >
-            {category.name}
-          </StAllboardIndex>
-        ))}
-      </StAllboardIndexes>
-      <StWriteButton onClick={() => navigates(`/boards/new`)}>
-        글쓰기
-      </StWriteButton>
-    </StAllboardIndexBox>
+    <StAllboardIndexWrapper>
+      <StAllboardIndexBox>
+        <StAllboardIndexes>
+          {categories.map((category, index) => (
+            <StAllboardIndex
+              onClick={() => clickCategory(category.value)}
+              key={index}
+              $isClicked={selectedCategory === category.value}
+            >
+              {category.name}
+            </StAllboardIndex>
+          ))}
+        </StAllboardIndexes>
+      </StAllboardIndexBox>
+    </StAllboardIndexWrapper>
   );
 }

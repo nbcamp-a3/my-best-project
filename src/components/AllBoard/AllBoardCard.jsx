@@ -13,10 +13,9 @@ import {
   StAvatar,
   StTimeBox,
 } from './styles';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function AllBoardCard({ data }) {
-  const navigates = useNavigate();
   return (
     <StAllBoardItem key={data.userid}>
       <StAllBoardNameBox>
@@ -37,13 +36,15 @@ export default function AllBoardCard({ data }) {
           <StAllBoardLikedButton>❤️</StAllBoardLikedButton>
         </StTimeBox>
       </StAllBoardNameBox>
-      <StAllBoardContentBox onClick={() => navigates(`/boards/${data.uid}`)}>
-        <StAllBoardTitleBox>
-          <StAllBoarTitle>{data.title}</StAllBoarTitle>
-          <StAllBoardContent>{data.content}</StAllBoardContent>
-        </StAllBoardTitleBox>
-        <StAllBoardImagePreview $src={data.img}></StAllBoardImagePreview>
-      </StAllBoardContentBox>
+      <Link to={`/boards/${data.uid}`}>
+        <StAllBoardContentBox>
+          <StAllBoardTitleBox>
+            <StAllBoarTitle>{data.title}</StAllBoarTitle>
+            <StAllBoardContent>{data.content}</StAllBoardContent>
+          </StAllBoardTitleBox>
+          <StAllBoardImagePreview $src={data.img}></StAllBoardImagePreview>
+        </StAllBoardContentBox>
+      </Link>
     </StAllBoardItem>
   );
 }

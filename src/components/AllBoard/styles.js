@@ -4,10 +4,9 @@ import styled from 'styled-components';
 export const StAllboardContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   color: black;
-  justify-content: center;
   align-items: flex-start;
 `;
 export const StAllboardIndexBox = styled.div`
@@ -15,7 +14,18 @@ export const StAllboardIndexBox = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin: 40px 20px 0 100px;
+  margin: auto;
+`;
+
+export const StAllboardIndexWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 1200px;
+  color: black;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 80px;
   position: sticky;
   top: 30px;
 `;
@@ -27,12 +37,17 @@ export const StAllboardIndexes = styled.div`
   padding: 40px 0 0 0;
   background-color: ${COLORS.primaryColor};
   color: white;
+  @media only screen and (max-width: 1200px) {
+    width: 180px;
+  }
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const StAllBoardList = styled.div`
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
   display: grid;
   grid-template: repeat(1, 1fr);
   gap: 10px;
@@ -46,6 +61,10 @@ export const StAllBoardItem = styled.div`
   padding: 20px;
   width: 900px;
   border-radius: 30px;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    margin: 0;
+  }
 `;
 
 export const StAllBoardNameBox = styled.div`
@@ -80,6 +99,7 @@ export const StAllboardIndex = styled.div`
   &:hover {
     color: black;
   }
+  color: ${(props) => (props.$isClicked ? 'black' : 'white')};
 `;
 
 export const StAllBoardLikedButton = styled.button`
@@ -110,12 +130,18 @@ export const StAllBoardContent = styled.div`
   font-size: 20px;
   margin-right: 15px;
   margin-left: 10px;
-  width: 560px;
+  width: 500px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
+  @media only screen and (max-width: 1200px) {
+    width: 400px;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 300px;
+  }
 `;
 
 export const StAllBoardTitleBox = styled.div`
@@ -132,6 +158,12 @@ export const StAllBoardImagePreview = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: 30px;
+  @media only screen and (max-width: 1200px) {
+    width: 180px;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 100px;
+  }
 `;
 
 export const StWriteButton = styled.button`
@@ -149,6 +181,11 @@ export const StWriteButton = styled.button`
   }
   width: 100px;
   font-weight: bold;
+`;
+
+export const StWriteButtonBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const StTimeBox = styled.div``;
