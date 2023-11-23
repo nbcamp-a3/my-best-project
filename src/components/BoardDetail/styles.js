@@ -9,19 +9,20 @@ export const StBoardDetailMain = styled.div`
 `;
 
 export const StImg = styled.img`
-  min-width: 550px;
-  height: 350px;
+  width: 100%;
+  height: 450px;
 
   border-radius: 20px;
 `;
 
 export const StAllContent = styled.div`
   height: 700px;
-  min-width: 700px;
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
+  padding: 4%;
 
   border-radius: 20px;
 
@@ -29,25 +30,28 @@ export const StAllContent = styled.div`
 `;
 
 export const StContent = styled.p`
-  width: 580px;
+  width: 100%;
   text-align: justify;
+  padding: 2%;
 `;
 
 export const StTitle = styled.p`
+  padding: 2%;
   font-size: larger;
 `;
 
 export const StBtn = styled.button`
-  min-width: 700px;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin-top: 30px;
+  margin-top: 3%;
 `;
 
 export const StGoListBtn = styled.button`
-  min-width: 700px;
-  margin-top: 20px;
-  padding: 10px;
+  width: 100%;
+  margin-top: 3%;
+  padding: 1%;
   border-radius: 7px;
+  font-size: medium;
   background-color: ${COLORS.itembgColor};
 `;
