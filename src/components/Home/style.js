@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StHomeContainer = styled.div`
   position: relative;
   width: 100%;
-  /* background-color: rebeccapurple; */
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,22 +12,29 @@ export const StHomeContainer = styled.div`
   height: 100%;
 `;
 
+export const StCommentBtnBox = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const StGoToListBtn = styled.button`
-  position: absolute;
-  width: 100px;
-  height: 50px;
-  right: 60px;
-  top: 660px;
-  border-radius: 20px;
+  width: 20%;
+  height: inherit;
   cursor: pointer;
   font-size: 25px;
   font-weight: 800;
-  /* border-bottom: 4px solid black; */
   opacity: 0.3;
   text-decoration: underline;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+
   &:hover {
-    /* background-color: grey; */
     opacity: 1;
     text-decoration: underline;
     color: red;
@@ -36,7 +43,7 @@ export const StGoToListBtn = styled.button`
 export const StMainContent = styled.div`
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 150%;
   background-color: #f9f9f9;
   margin-bottom: 200px;
   border-radius: 20px;
@@ -49,8 +56,8 @@ export const StMainContent = styled.div`
   }
 
   img {
-    width: 500px;
-    height: 400px;
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
   }
 
@@ -67,15 +74,17 @@ export const StMainContent = styled.div`
 
 export const StContentContainer = styled.div`
   display: grid;
-  /* background-color: red; */
-  grid-template-columns: repeat(2, 900px);
+  grid-template-columns: repeat(2, auto);
+  gap: 30px;
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(1, auto);
+  }
 `;
 
 export const StContentBox = styled.div`
-  width: 800px;
-  height: 600px;
-  /* background-color: black; */
-  gap: 30px;
+  width: 70%;
+  height: 80%;
+
   justify-self: center;
   align-self: center;
   border-radius: 20px;
@@ -88,7 +97,7 @@ export const StContentBox = styled.div`
   cursor: pointer;
 
   img {
-    width: 776px;
+    width: 100%;
     height: 400px;
     border-radius: 20px;
     padding: 30px;
@@ -109,9 +118,6 @@ export const StContentBox = styled.div`
 export const StPtag = styled.p`
   font-size: 50px;
   font-weight: 800;
-  position: absolute;
-  left: 60px;
-  top: 550px;
   display: flex;
   height: 100px;
   align-items: center;

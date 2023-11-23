@@ -11,4 +11,5 @@ export const Stcontainer = styled.div`
 
 export const StPtag = styled.p`
   font-weight: 800;
+  color: #fff;
 `;
