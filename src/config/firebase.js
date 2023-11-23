@@ -20,7 +20,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const auth = getAuth();
+export const auth = getAuth();
 const provider = new GithubAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 
