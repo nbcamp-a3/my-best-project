@@ -12,7 +12,7 @@ export const StContainer = styled.div`
 
   input {
     font-size: 2rem;
-    min-width: 1000px;
+    width: 100%;
     padding: 20px;
     border-radius: 10px;
     background-color: ${COLORS.itembgColor};
@@ -20,7 +20,7 @@ export const StContainer = styled.div`
 
   textarea {
     font-size: large;
-    min-width: 1000px;
+    width: 100%;
     resize: none;
     background-color: ${COLORS.itembgColor};
     padding: 10px;
@@ -30,7 +30,7 @@ export const StContainer = styled.div`
 
   div {
     margin-top: 20px;
-    width: 1000px;
+    width: 100%;
 
     display: flex;
     justify-content: flex-start;
@@ -48,9 +48,9 @@ export const StBtnContainer = styled.div`
   justify-content: center;
 `;
 export const StBtn = styled.button`
-  margin: 20px 20px 0px 20px;
-  padding: 15px;
-  width: 100px;
+  margin: 20px 70px 0px 0px;
+  padding: 1%;
+  width: 10%;
   background-color: gray;
   border-radius: 10px;
   font-size: medium;
@@ -61,9 +61,9 @@ export const StBtn = styled.button`
   }
 `;
 export const StRedBtn = styled.button`
-  margin: 20px 20px 0px 20px;
-  padding: 15px;
-  width: 100px;
+  margin: 20px 0px 0px 70px;
+  padding: 1%;
+  width: 10%;
   background-color: ${COLORS.primaryColor};
   border-radius: 10px;
   font-size: medium;
