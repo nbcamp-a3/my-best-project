@@ -13,8 +13,10 @@ import {
   StAvatar,
   StTimeBox,
 } from './styles';
+import { useNavigate } from 'react-router-dom';
 
 export default function AllBoardCard({ data }) {
+  const navigates = useNavigate();
   return (
     <StAllBoardItem key={data.userid}>
       <StAllBoardNameBox>
@@ -35,7 +37,7 @@ export default function AllBoardCard({ data }) {
           <StAllBoardLikedButton>❤️</StAllBoardLikedButton>
         </StTimeBox>
       </StAllBoardNameBox>
-      <StAllBoardContentBox>
+      <StAllBoardContentBox onClick={() => navigates(`/boards/${data.uid}`)}>
         <StAllBoardTitleBox>
           <StAllBoarTitle>{data.title}</StAllBoarTitle>
           <StAllBoardContent>{data.content}</StAllBoardContent>
