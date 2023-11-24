@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { StImg, StContent, StTitle, StAllContent, StBtn } from './styles';
+import {
+  StImg,
+  StContent,
+  StTitle,
+  StAllContent,
+  StBtn,
+  StAllContentBox,
+} from './styles';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaGithub } from 'react-icons/fa';
 
@@ -22,9 +29,9 @@ export default function BoardDetailContent() {
     <>
       {dummyData.map((data) => {
         return (
-          <div key={data.uid}>
+          <StAllContentBox key={data.uid}>
             <StAllContent>
-              <StImg src={data.img} alt="이미지" />
+              <StImg $src={data.img} />
               <StTitle>{data.title}</StTitle>
               <StContent>{data.content}</StContent>
             </StAllContent>
@@ -32,7 +39,7 @@ export default function BoardDetailContent() {
               <FaGithub size="30" />
               <MdDeleteForever size="30" />
             </StBtn>
-          </div>
+          </StAllContentBox>
         );
       })}
     </>
