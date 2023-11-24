@@ -64,9 +64,18 @@ export const StBtn = styled.button`
 `;
 
 export const StGoListBtn = styled.button`
-  width: 45%;
+  width: 100%;
   padding: 20px;
   border-radius: 7px;
   font-size: medium;
   background-color: ${COLORS.itembgColor};
+  cursor: pointer;
+`;
+
+export const StGoListBtnBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 65%;
 `;
