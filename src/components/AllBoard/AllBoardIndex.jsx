@@ -8,7 +8,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { changeCategory } from 'redux/modules/selectedCategory';
 
-
 const categories = [
   {
     name: '개인로그',
