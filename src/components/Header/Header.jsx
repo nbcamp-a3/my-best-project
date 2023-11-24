@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { StLoginBtn, StLogo, StNav, Stcontainer } from './styles';
+import { StLoginBtn, StLogo, StLogoBox, StNav, Stcontainer } from './styles';
 import mbplogoimg from 'assets/mbplogoimg.png';
 import { VscAccount } from 'react-icons/vsc';
 import { Link, NavLink } from 'react-router-dom';
 import AuthModal from 'components/Auth/AuthModal';
 import { useLoggedIn } from 'hooks/useAuth';
 import { logout } from 'config/firebase';
+import Headermodal from 'components/Headermodal/Headermodal';
 
 export default function Header() {
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { loginState } = useLoggedIn();
 
-  const handleLoginClickedBtn = () => setShowLoginModal(true);
+  const handleLoginClickedBtn = () => {
+    setShowLoginModal(true);
+    setIsModalOpen(false);
+  };
   const handleClosedBtn = () => setShowLoginModal(false);
 
   useEffect(() => {
@@ -31,9 +37,12 @@ export default function Header() {
         </StNav>
 
         {loginState ? (
-          <StLoginBtn>
-            <VscAccount size="3em" />
-          </StLoginBtn>
+          <StLogoBox>
+            <StLoginBtn onClick={() => setIsModalOpen(!isModalOpen)}>
+              <VscAccount size="2em" />
+            </StLoginBtn>
+            {isModalOpen && <Headermodal />}
+          </StLogoBox>
         ) : (
           <StLoginBtn onClick={handleLoginClickedBtn}>로그인</StLoginBtn>
         )}
