@@ -75,6 +75,34 @@ export const StAllBoardItem = styled.div`
   }
 `;
 
+export const StAllBoardEmptyItem = styled.div`
+  background-color: ${COLORS.itembgColor};
+  color: black;
+  margin-bottom: 40px;
+  margin-left: 50px;
+  padding: 20px;
+  width: 900px;
+  border-radius: 30px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (max-width: 1200px) {
+    width: 120%;
+    margin: 0;
+  }
+  @media only screen and (max-width: 900px) {
+    width: 140%;
+    margin: 0;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    margin: 0;
+  }
+`;
+
+
 export const StAllBoardNameBox = styled.div`
   display: flex;
   flex-direction: row;
