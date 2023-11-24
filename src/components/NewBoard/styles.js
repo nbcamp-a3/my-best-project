@@ -9,9 +9,11 @@ export const StContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 1200px;
 
   input {
     font-size: 2rem;
+    font-weight: bold;
     width: 100%;
     padding: 20px;
     border-radius: 10px;
@@ -39,6 +41,14 @@ export const StContainer = styled.div`
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom: 1px solid gray;
+
+    p {
+      margin-right: 1%;
+    }
+
+    select {
+      margin-right: 2%;
+    }
   }
 `;
 
