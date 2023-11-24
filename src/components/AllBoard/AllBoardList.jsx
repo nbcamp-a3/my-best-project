@@ -34,9 +34,9 @@ export default function AllBoardList() {
   return (
     <StAllBoardList>
       <StWriteButtonBox>
-        <StWriteButton>
-          <Link to="/boards/new">글쓰기</Link>
-        </StWriteButton>
+        <Link to="/boards/new">
+          <StWriteButton>글쓰기</StWriteButton>
+        </Link>
       </StWriteButtonBox>
       {filteredBoards.length === 0 ? (
         <AllBoardEmptyCard />
