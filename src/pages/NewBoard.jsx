@@ -21,7 +21,6 @@ export default function NewBoard() {
   const navigate = useNavigate();
   const { loginState } = useLoggedIn();
   const dispatch = useDispatch();
-  const getCategoty = categories;
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -99,7 +98,7 @@ export default function NewBoard() {
             <div>
               <p>카테고리</p>
               <select onChange={onChangeCategories}>
-                {getCategoty.map((c) => {
+                {categories.map((c) => {
                   return (
                     <option key={c.value} value={c.value}>
                       {c.name}
