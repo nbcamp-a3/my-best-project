@@ -27,9 +27,8 @@ export default function NewBoard() {
   const [category, setCategory] = useState('project');
   const [image, setImage] = useState([]);
   //사진 첨부 안 할 시 산타르탄이 등장
-  const [defaultImage] = useState(
-    'https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/Webp.net-gifmaker.gif',
-  );
+  const defaultImage =
+    'https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/Webp.net-gifmaker.gif';
 
   const onChangeTitle = (e) => setTitle(e.target.value);
   const onChangeContent = (e) => setContent(e.target.value);
@@ -49,8 +48,6 @@ export default function NewBoard() {
         });
     });
   };
-
-  console.log(image);
 
   const handleAddBoard = async (e) => {
     e.preventDefault();
