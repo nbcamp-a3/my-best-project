@@ -6,7 +6,6 @@ import {
   StRedBtn,
   StDiv,
 } from 'components/NewBoard/styles';
-// import { FaCode } from 'react-icons/fa';
 import { useLoggedIn } from 'hooks/useAuth';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from 'config/firebase';
@@ -52,6 +51,7 @@ export default function NewBoard() {
     e.preventDefault();
     const newBoard = {
       category: category,
+      createdAt: new Date().toISOString(),
       uid: loginState.uid,
       avatar: loginState.photoURL,
       userid: loginState.email,
@@ -107,7 +107,6 @@ export default function NewBoard() {
                   );
                 })}
               </select>
-              {/* <FaCode size={20} /> */}
               <input
                 type="file"
                 accept=".gif, .jpg, .png"
