@@ -12,6 +12,7 @@ export const StContainer = styled.div`
 
   input {
     font-size: 2rem;
+    font-weight: bold;
     width: 100%;
     padding: 20px;
     border-radius: 10px;
@@ -39,6 +40,14 @@ export const StContainer = styled.div`
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom: 1px solid gray;
+
+    p {
+      margin-right: 5px;
+    }
+
+    select {
+      margin-right: 15px;
+    }
   }
 `;
 
@@ -49,7 +58,7 @@ export const StBtnContainer = styled.div`
 `;
 export const StBtn = styled.button`
   margin: 20px 70px 0px 0px;
-  padding: 1%;
+  padding: 15px;
   width: 10%;
   background-color: gray;
   border-radius: 10px;
@@ -62,7 +71,7 @@ export const StBtn = styled.button`
 `;
 export const StRedBtn = styled.button`
   margin: 20px 0px 0px 70px;
-  padding: 1%;
+  padding: 15px;
   width: 10%;
   background-color: ${COLORS.primaryColor};
   border-radius: 10px;

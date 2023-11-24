@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import GlobalStyles from 'GlobalStyle';
 import Router from 'Router';
-import { auth, userStateChange } from 'config/firebase';
+import { auth, db, userStateChange } from 'config/firebase';
 import { useLoggedIn } from 'hooks/useAuth';
 import LoadingScreen from 'components/LoadingScreen/LoadingScreen';
+// import { collection, getDocs } from 'firebase/firestore';
 
 export default function App() {
   const [isLoading, setLoading] = useState(true);
@@ -21,6 +22,16 @@ export default function App() {
   useEffect(() => {
     userStateChange((user) => setLoginState(user));
   }, [setLoginState]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const querySnapshot = await getDocs(collection(db, 'boards'));
+  //     querySnapshot.forEach((doc) => {
+  //       console.log(`${doc.id} => ${doc.data()}`);
+  //     });
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <>
