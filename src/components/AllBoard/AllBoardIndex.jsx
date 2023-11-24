@@ -8,8 +8,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { changeCategory } from 'redux/modules/selectedCategory';
 
-
-const categories = [
+export const categories = [
   {
     name: '개인로그',
     value: 'project',

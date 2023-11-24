@@ -6,36 +6,44 @@ import {
   StRedBtn,
   StDiv,
 } from 'components/NewBoard/styles';
-import { FaCode } from 'react-icons/fa';
+// import { FaCode } from 'react-icons/fa';
 import { useLoggedIn } from 'hooks/useAuth';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from 'config/firebase';
 import { useNavigate } from 'react-router-dom';
 import { fakeData } from 'mock/allBoards';
+import { categories } from 'components/AllBoard/AllBoardIndex';
 
 export default function NewBoard() {
   const navigate = useNavigate();
   const { loginState } = useLoggedIn();
   // console.log('loginState', loginState);
 
+  const getCategoty = categories;
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [categories, setCategories] = useState('project');
+  const [category, setCategory] = useState('project');
   const [boards, setBoards] = useState(fakeData);
+  const [image, setImage] = useState(null);
 
   const onChangeTitle = (e) => setTitle(e.target.value);
   const onChangeContent = (e) => setContent(e.target.value);
-  const onChangeCategories = (e) => setCategories(e.target.value);
+  const onChangeCategories = (e) => setCategory(e.target.value);
+  const onChangeImage = (e) => setImage(e.target.files[0]);
 
-  const addBoard = async (e) => {
+  console.log(image);
+
+  const handleAddBoard = async (e) => {
     e.preventDefault();
     const newBoard = {
-      category: categories,
+      category: category,
       uid: loginState.uid,
       avatar: loginState.photoURL,
       userid: loginState.email,
       title,
       content,
+      img: image,
     };
     if (title === '' || content === '') {
       alert('제목과 내용을 입력해주세요.');
@@ -50,21 +58,18 @@ export default function NewBoard() {
     await addDoc(collectionRef, newBoard);
   };
 
-  const cancel = () => {
+  const handleCancel = () => {
     if (!(title === '') || !(content === '')) {
-      return window.confirm('저장되지 않은 데이터는 지워집니다.')
-        ? navigate('/boards')
-        : false;
-    } else {
-      navigate('/boards');
+      if (!window.confirm('저장되지 않은 데이터는 지워집니다.')) return;
     }
+    navigate('/boards');
   };
 
   return (
     <>
       <StDiv>
         <h2>너의 프로젝트를 보여줘!</h2>
-        <form onSubmit={addBoard}>
+        <form onSubmit={handleAddBoard}>
           <StContainer>
             <input
               type="text"
@@ -75,12 +80,16 @@ export default function NewBoard() {
             <div>
               <p>카테고리</p>
               <select onChange={onChangeCategories}>
-                <option value="project">개인로그</option>
-                <option value="teamproject">팀로그</option>
-                <option value="algorithm">알고리즘</option>
-                <option value="tutor">튜터코멘트</option>
+                {getCategoty.map((c) => {
+                  return (
+                    <option key={c.value} value={c.value}>
+                      {c.name}
+                    </option>
+                  );
+                })}
               </select>
-              <FaCode size={20} />
+              {/* <FaCode size={20} /> */}
+              <input type="file" onChange={onChangeImage} />
             </div>
             <textarea
               rows={50}
@@ -90,7 +99,7 @@ export default function NewBoard() {
             ></textarea>
           </StContainer>
           <StBtnContainer>
-            <StBtn type="button" onClick={cancel}>
+            <StBtn type="button" onClick={handleCancel}>
               취소
             </StBtn>
             <StRedBtn type="submit">글쓰기</StRedBtn>
