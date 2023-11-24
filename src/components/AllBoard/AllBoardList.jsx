@@ -17,7 +17,12 @@ export default function AllBoardList() {
   useEffect(() => {
     getDocs(collection(db, 'boards'))
       .then((res) => {
-        return res.docs.map((doc) => doc.data());
+        return res.docs.map((doc) => {
+          return {
+            id: doc.id,
+            ...doc.data(),
+          };
+        });
       })
       .then((data) => {
         dispatch(setBoards(data));

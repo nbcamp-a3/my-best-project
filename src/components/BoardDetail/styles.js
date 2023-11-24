@@ -60,6 +60,7 @@ export const StBtn = styled.button`
   display: flex;
   justify-content: flex-end;
   margin-top: 40px;
+  cursor: pointer;
 `;
 
 export const StGoListBtn = styled.button`
