@@ -21,7 +21,6 @@ export default function Header() {
   return (
     <>
       <Stcontainer>
-        <button onClick={() => logout()}>Logout</button>
         <Link to="/">
           <StLogo src={mbplogoimg} />
         </Link>
