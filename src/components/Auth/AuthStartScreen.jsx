@@ -21,7 +21,9 @@ export default function AuthStartScreen({ toggleComponent }) {
           <FaGithub size="1rem" />
           깃헙으로 3초만에 시작하기
         </StButton>
-        <StButton onClick={toggleComponent}>이메일로 시작하기</StButton>
+        <StButton onClick={() => toggleComponent('email')}>
+          이메일로 시작하기
+        </StButton>
       </div>
     </>
   );

@@ -37,11 +37,16 @@ export default function EmailLoginScreen({ toggleComponent }) {
         <div>
           <span>
             아직 가입하지 않았나요?
-            <StGoToSignUpBtn>회원가입하기</StGoToSignUpBtn>
+            <StGoToSignUpBtn
+              onClick={() => toggleComponent('signup')}
+              type="button"
+            >
+              회원가입하기
+            </StGoToSignUpBtn>
           </span>
         </div>
       </StSignForm>
-      <StGoToBackBtn onClick={toggleComponent}>
+      <StGoToBackBtn onClick={() => toggleComponent('start')}>
         <FaArrowLeft />
         뒤로
       </StGoToBackBtn>
