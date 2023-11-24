@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 import { COLORS } from 'constants/colors';
 
-export const StTextarea = styled.textarea`
-  background-color: yellow;
-`;
-
 export const StContainer = styled.div`
   input {
     font-size: 20px;
