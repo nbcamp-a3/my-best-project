@@ -12,9 +12,9 @@ export const checkLoginStatus = (user) => ({
 });
 
 const userReducer = (state = initialState, action) => {
-  const userInfo = action?.payload?.providerData[0] ?? null;
   switch (action.type) {
     case USER_LOGGEDIN:
+      const userInfo = action.payload?.providerData[0] ?? null;
       return { user: userInfo };
     case USER_LOGOUT:
       return { user: null };
