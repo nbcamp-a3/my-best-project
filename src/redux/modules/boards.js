@@ -1,4 +1,5 @@
 const SET_BOARDS = 'SET_BOARDS';
+const ADD_BOARD = 'ADD_BOARD';
 
 export const initialState = [];
 
@@ -9,11 +10,20 @@ export const setBoards = (boards) => ({
   },
 });
 
+export const addBoard = (newBoard) => {
+  return {
+    type: ADD_BOARD,
+    payload: newBoard,
+  };
+};
+
 const boards = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case SET_BOARDS:
       return payload.boards;
+    case ADD_BOARD:
+      return [...state, payload];
     default:
       return state;
   }

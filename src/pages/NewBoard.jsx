@@ -11,28 +11,35 @@ import { useLoggedIn } from 'hooks/useAuth';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from 'config/firebase';
 import { useNavigate } from 'react-router-dom';
-import { fakeData } from 'mock/allBoards';
 import { categories } from 'components/AllBoard/AllBoardIndex';
+import { useDispatch } from 'react-redux';
+import { addBoard } from 'redux/modules/boards';
+import { storage } from 'config/firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 export default function NewBoard() {
   const navigate = useNavigate();
   const { loginState } = useLoggedIn();
-  // console.log('loginState', loginState);
-
+  const dispatch = useDispatch();
   const getCategoty = categories;
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('project');
-  const [boards, setBoards] = useState(fakeData);
   const [image, setImage] = useState(null);
 
   const onChangeTitle = (e) => setTitle(e.target.value);
   const onChangeContent = (e) => setContent(e.target.value);
   const onChangeCategories = (e) => setCategory(e.target.value);
-  const onChangeImage = (e) => setImage(e.target.files[0]);
-
-  console.log(image);
+  const onChangeImage = (e) => {
+    const imgs = ref(storage, `imgs/${loginState.uid}`);
+    uploadBytes(imgs, e.target.files[0]).then((data) => {
+      console.log(data, 'imgs');
+      getDownloadURL(data.ref).then((val) => {
+        setImage(val);
+      });
+    });
+  };
 
   const handleAddBoard = async (e) => {
     e.preventDefault();
@@ -49,13 +56,14 @@ export default function NewBoard() {
       alert('제목과 내용을 입력해주세요.');
       return false;
     }
-    setBoards([...boards, newBoard]);
+    dispatch(addBoard(newBoard));
     setContent('');
     setTitle('');
 
     const collectionRef = collection(db, 'boards');
-
     await addDoc(collectionRef, newBoard);
+    alert('등록되었습니다😀');
+    navigate(-1);
   };
 
   const handleCancel = () => {
@@ -89,7 +97,11 @@ export default function NewBoard() {
                 })}
               </select>
               {/* <FaCode size={20} /> */}
-              <input type="file" onChange={onChangeImage} />
+              <input
+                type="file"
+                accept=".gif, .jpg, .png"
+                onChange={onChangeImage}
+              />
             </div>
             <textarea
               rows={50}
