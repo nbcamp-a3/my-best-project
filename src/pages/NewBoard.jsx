@@ -4,6 +4,7 @@ import {
   StContainer,
   StBtn,
   StRedBtn,
+  StDiv,
 } from 'components/NewBoard/styles';
 import { FaCode } from 'react-icons/fa';
 import { useLoggedIn } from 'hooks/useAuth';
@@ -21,8 +22,6 @@ export default function NewBoard() {
   const [content, setContent] = useState('');
   const [categories, setCategories] = useState('project');
   const [boards, setBoards] = useState(fakeData);
-
-  console.log(boards);
 
   const onChangeTitle = (e) => setTitle(e.target.value);
   const onChangeContent = (e) => setContent(e.target.value);
@@ -53,46 +52,51 @@ export default function NewBoard() {
 
   const cancel = () => {
     if (!(title === '') || !(content === '')) {
-      alert('저장되지 않은 데이터는 지워집니다.');
-      return false;
+      return window.confirm('저장되지 않은 데이터는 지워집니다.')
+        ? navigate('/boards')
+        : false;
+    } else {
+      navigate('/boards');
     }
-    navigate('/boards');
   };
 
   return (
     <>
-      <form onSubmit={addBoard}>
-        <StContainer>
-          <input
-            type="text"
-            placeholder="제목을 입력하세요."
-            value={title}
-            onChange={onChangeTitle}
-          />
-          <div>
-            <p>카테고리</p>
-            <select onChange={onChangeCategories}>
-              <option value="project">개인로그</option>
-              <option value="teamproject">팀로그</option>
-              <option value="algorithm">알고리즘</option>
-              <option value="tutor">튜터코멘트</option>
-            </select>
-            <FaCode size={20} />
-          </div>
-          <textarea
-            rows={50}
-            placeholder="내용을 입력하세요."
-            value={content}
-            onChange={onChangeContent}
-          ></textarea>
-        </StContainer>
-        <StBtnContainer>
-          <StBtn type="button" onClick={cancel}>
-            취소
-          </StBtn>
-          <StRedBtn type="submit">글쓰기</StRedBtn>
-        </StBtnContainer>
-      </form>
+      <StDiv>
+        <h2>너의 프로젝트를 보여줘!</h2>
+        <form onSubmit={addBoard}>
+          <StContainer>
+            <input
+              type="text"
+              placeholder="제목을 입력하세요."
+              value={title}
+              onChange={onChangeTitle}
+            />
+            <div>
+              <p>카테고리</p>
+              <select onChange={onChangeCategories}>
+                <option value="project">개인로그</option>
+                <option value="teamproject">팀로그</option>
+                <option value="algorithm">알고리즘</option>
+                <option value="tutor">튜터코멘트</option>
+              </select>
+              <FaCode size={20} />
+            </div>
+            <textarea
+              rows={50}
+              placeholder="내용을 입력하세요."
+              value={content}
+              onChange={onChangeContent}
+            ></textarea>
+          </StContainer>
+          <StBtnContainer>
+            <StBtn type="button" onClick={cancel}>
+              취소
+            </StBtn>
+            <StRedBtn type="submit">글쓰기</StRedBtn>
+          </StBtnContainer>
+        </form>
+      </StDiv>
     </>
   );
 }

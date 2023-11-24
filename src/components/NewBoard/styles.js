@@ -1,17 +1,9 @@
 import styled from 'styled-components';
 import { COLORS } from 'constants/colors';
 
-export const StTextarea = styled.textarea`
-  background-color: yellow;
-`;
-
 export const StContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
   input {
-    font-size: 2rem;
+    font-size: 20px;
     font-weight: bold;
     width: 100%;
     padding: 20px;
@@ -20,7 +12,7 @@ export const StContainer = styled.div`
   }
 
   textarea {
-    font-size: large;
+    font-size: medium;
     width: 100%;
     resize: none;
     background-color: ${COLORS.itembgColor};
@@ -63,6 +55,7 @@ export const StBtn = styled.button`
   background-color: gray;
   border-radius: 10px;
   font-size: medium;
+  cursor: pointer;
   transition: all 0.4s;
 
   &:hover {
@@ -76,9 +69,24 @@ export const StRedBtn = styled.button`
   background-color: ${COLORS.primaryColor};
   border-radius: 10px;
   font-size: medium;
+  cursor: pointer;
   transition: all 0.4s;
 
   &:hover {
     color: white;
+  }
+`;
+
+export const StDiv = styled.div`
+  max-width: 1200px;
+  margin: 0px auto;
+
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+    max-width: 1200px;
+    margin: 30px 0px 20px 0px;
+
+    font-family: 'DNFBitBitv2';
   }
 `;
