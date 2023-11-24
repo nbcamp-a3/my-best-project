@@ -9,7 +9,6 @@ export const StContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1200px;
 
   input {
     font-size: 2rem;
@@ -43,11 +42,11 @@ export const StContainer = styled.div`
     border-bottom: 1px solid gray;
 
     p {
-      margin-right: 1%;
+      margin-right: 5px;
     }
 
     select {
-      margin-right: 2%;
+      margin-right: 15px;
     }
   }
 `;
@@ -59,7 +58,7 @@ export const StBtnContainer = styled.div`
 `;
 export const StBtn = styled.button`
   margin: 20px 70px 0px 0px;
-  padding: 1%;
+  padding: 15px;
   width: 10%;
   background-color: gray;
   border-radius: 10px;
@@ -72,7 +71,7 @@ export const StBtn = styled.button`
 `;
 export const StRedBtn = styled.button`
   margin: 20px 0px 0px 70px;
-  padding: 1%;
+  padding: 15px;
   width: 10%;
   background-color: ${COLORS.primaryColor};
   border-radius: 10px;
