@@ -26,6 +26,9 @@ export default function NewBoard() {
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('project');
   const [image, setImage] = useState([]);
+  //사진 첨부 안 할 시 산타르탄이 등장
+  const defaultImage =
+    'https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/Webp.net-gifmaker.gif';
 
   const onChangeTitle = (e) => setTitle(e.target.value);
   const onChangeContent = (e) => setContent(e.target.value);
@@ -56,7 +59,7 @@ export default function NewBoard() {
       userid: loginState.email,
       title,
       content,
-      img: image,
+      img: image === null ? image : defaultImage,
     };
     if (title === '' || content === '') {
       alert('제목과 내용을 입력해주세요.');
