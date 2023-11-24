@@ -40,7 +40,7 @@ export const StAllboardIndexes = styled.div`
   @media only screen and (max-width: 1200px) {
     width: 180px;
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 900px) {
     display: none;
   }
 `;
@@ -61,6 +61,14 @@ export const StAllBoardItem = styled.div`
   padding: 20px;
   width: 900px;
   border-radius: 30px;
+  @media only screen and (max-width: 1200px) {
+    width: 120%;
+    margin: 0;
+  }
+  @media only screen and (max-width: 900px) {
+    width: 140%;
+    margin: 0;
+  }
   @media only screen and (max-width: 768px) {
     width: 100%;
     margin: 0;
@@ -139,7 +147,7 @@ export const StAllBoardContent = styled.div`
   @media only screen and (max-width: 1200px) {
     width: 400px;
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 900px) {
     width: 300px;
   }
 `;
