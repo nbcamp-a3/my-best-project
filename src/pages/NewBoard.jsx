@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import { addBoard } from 'redux/modules/boards';
 import { storage } from 'config/firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function NewBoard() {
   const navigate = useNavigate();
@@ -26,18 +27,24 @@ export default function NewBoard() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('project');
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState([]);
 
   const onChangeTitle = (e) => setTitle(e.target.value);
   const onChangeContent = (e) => setContent(e.target.value);
   const onChangeCategories = (e) => setCategory(e.target.value);
   const onChangeImage = (e) => {
-    const imgs = ref(storage, `imgs/${loginState.uid}`);
+    //구분성을 위해 uuid 사용
+    const imgs = ref(storage, `image/${uuidv4()}_${loginState.email}`);
     uploadBytes(imgs, e.target.files[0]).then((data) => {
       console.log(data, 'imgs');
-      getDownloadURL(data.ref).then((val) => {
-        setImage(val);
-      });
+      getDownloadURL(data.ref)
+        .then((val) => {
+          setImage(val);
+        })
+        .catch((error) => {
+          console.log('error', error);
+          alert('사진 업로드에 실패했습니다.');
+        });
     });
   };
 
@@ -57,13 +64,17 @@ export default function NewBoard() {
       return false;
     }
     dispatch(addBoard(newBoard));
-    setContent('');
-    setTitle('');
 
     const collectionRef = collection(db, 'boards');
     await addDoc(collectionRef, newBoard);
-    alert('등록되었습니다😀');
-    navigate(-1);
+
+    // 사진이 storage에 올라가는 시간 때문에 만약을 대비해 setTimeout 사용
+    setTimeout(() => {
+      alert('등록되었습니다😀');
+      setContent('');
+      setTitle('');
+      navigate(-1);
+    }, 2000);
   };
 
   const handleCancel = () => {
