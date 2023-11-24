@@ -1,49 +1,45 @@
-import React, { useState } from 'react';
-import { login } from 'config/firebase';
-import { StLoginBtn, StLogo, StNav, StPtag, Stcontainer } from './styles';
+import React, { useEffect, useState } from 'react';
+import { StLoginBtn, StLogo, StNav, Stcontainer } from './styles';
 import mbplogoimg from 'assets/mbplogoimg.png';
 import { VscAccount } from 'react-icons/vsc';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import AuthModal from 'components/Auth/AuthModal';
+import { useLoggedIn } from 'hooks/useAuth';
+import { logout } from 'config/firebase';
 
 export default function Header() {
-  const navigate = useNavigate();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const { loginState } = useLoggedIn();
 
-  const [Login, setLogin] = useState(true);
+  const handleLoginClickedBtn = () => setShowLoginModal(true);
+  const handleClosedBtn = () => setShowLoginModal(false);
 
-  const handleLogin = () => {
-    login();
-    setLogin(!Login);
-  };
+  useEffect(() => {
+    if (loginState) setShowLoginModal(false);
+  }, [loginState]);
+
   return (
     <>
-      {Login ? (
-        <Stcontainer>
-          <StLogo
-            onClick={() => {
-              navigate('/');
-            }}
-            src={mbplogoimg}
-          />
-          <StNav>
-            <NavLink to="/boards">과제</NavLink>
-            <NavLink to="">알고리즘</NavLink>
-            <NavLink to="">튜터코멘트</NavLink>
-          </StNav>
-          <StLoginBtn onClick={handleLogin}>로그인</StLoginBtn>
-        </Stcontainer>
-      ) : (
-        <Stcontainer>
+      <Stcontainer>
+        <button onClick={() => logout()}>Logout</button>
+        <Link to="/">
           <StLogo src={mbplogoimg} />
-          <StNav>
-            <StPtag to="/boards">과제</StPtag>
-            <StPtag to="">알고리즘</StPtag>
-            <StPtag to="">튜터코멘트</StPtag>
-          </StNav>
-          <StLoginBtn onClick={handleLogin}>
+        </Link>
+        <StNav>
+          <NavLink to="/boards">과제</NavLink>
+          <NavLink to="">알고리즘</NavLink>
+          <NavLink to="">튜터코멘트</NavLink>
+        </StNav>
+
+        {loginState ? (
+          <StLoginBtn>
             <VscAccount size="3em" />
           </StLoginBtn>
-        </Stcontainer>
-      )}
+        ) : (
+          <StLoginBtn onClick={handleLoginClickedBtn}>로그인</StLoginBtn>
+        )}
+        {showLoginModal && <AuthModal onClose={handleClosedBtn} />}
+      </Stcontainer>
     </>
   );
 }
