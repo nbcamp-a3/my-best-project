@@ -40,6 +40,13 @@ export const StContainer = styled.div`
     select {
       margin-right: 15px;
     }
+
+    input {
+      padding: 0;
+      width: 30%;
+      font-size: small;
+      border-radius: 0;
+    }
   }
 `;
 

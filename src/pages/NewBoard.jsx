@@ -6,65 +6,88 @@ import {
   StRedBtn,
   StDiv,
 } from 'components/NewBoard/styles';
-import { FaCode } from 'react-icons/fa';
 import { useLoggedIn } from 'hooks/useAuth';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from 'config/firebase';
 import { useNavigate } from 'react-router-dom';
-import { fakeData } from 'mock/allBoards';
+import { categories } from 'components/AllBoard/AllBoardIndex';
+import { useDispatch } from 'react-redux';
+import { addBoard } from 'redux/modules/boards';
+import { storage } from 'config/firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function NewBoard() {
   const navigate = useNavigate();
   const { loginState } = useLoggedIn();
-  // console.log('loginState', loginState);
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [categories, setCategories] = useState('project');
-  const [boards, setBoards] = useState(fakeData);
+  const [category, setCategory] = useState('project');
+  const [image, setImage] = useState([]);
 
   const onChangeTitle = (e) => setTitle(e.target.value);
   const onChangeContent = (e) => setContent(e.target.value);
-  const onChangeCategories = (e) => setCategories(e.target.value);
+  const onChangeCategories = (e) => setCategory(e.target.value);
+  const onChangeImage = (e) => {
+    //구분성을 위해 uuid 사용
+    const imgs = ref(storage, `image/${uuidv4()}_${loginState.email}`);
+    uploadBytes(imgs, e.target.files[0]).then((data) => {
+      console.log(data, 'imgs');
+      getDownloadURL(data.ref)
+        .then((val) => {
+          setImage(val);
+        })
+        .catch((error) => {
+          console.log('error', error);
+          alert('사진 업로드에 실패했습니다.');
+        });
+    });
+  };
 
-  const addBoard = async (e) => {
+  const handleAddBoard = async (e) => {
     e.preventDefault();
     const newBoard = {
-      category: categories,
+      category: category,
+      createdAt: new Date().toISOString(),
       uid: loginState.uid,
       avatar: loginState.photoURL,
       userid: loginState.email,
       title,
       content,
+      img: image,
     };
     if (title === '' || content === '') {
       alert('제목과 내용을 입력해주세요.');
       return false;
     }
-    setBoards([...boards, newBoard]);
-    setContent('');
-    setTitle('');
+    dispatch(addBoard(newBoard));
 
     const collectionRef = collection(db, 'boards');
-
     await addDoc(collectionRef, newBoard);
+
+    // 사진이 storage에 올라가는 시간 때문에 만약을 대비해 setTimeout 사용
+    setTimeout(() => {
+      alert('등록되었습니다😀');
+      setContent('');
+      setTitle('');
+      navigate(-1);
+    }, 2000);
   };
 
-  const cancel = () => {
+  const handleCancel = () => {
     if (!(title === '') || !(content === '')) {
-      return window.confirm('저장되지 않은 데이터는 지워집니다.')
-        ? navigate('/boards')
-        : false;
-    } else {
-      navigate('/boards');
+      if (!window.confirm('저장되지 않은 데이터는 지워집니다.')) return;
     }
+    navigate('/boards');
   };
 
   return (
     <>
       <StDiv>
         <h2>너의 프로젝트를 보여줘!</h2>
-        <form onSubmit={addBoard}>
+        <form onSubmit={handleAddBoard}>
           <StContainer>
             <input
               type="text"
@@ -75,12 +98,19 @@ export default function NewBoard() {
             <div>
               <p>카테고리</p>
               <select onChange={onChangeCategories}>
-                <option value="project">개인로그</option>
-                <option value="teamproject">팀로그</option>
-                <option value="algorithm">알고리즘</option>
-                <option value="tutor">튜터코멘트</option>
+                {categories.map((c) => {
+                  return (
+                    <option key={c.value} value={c.value}>
+                      {c.name}
+                    </option>
+                  );
+                })}
               </select>
-              <FaCode size={20} />
+              <input
+                type="file"
+                accept=".gif, .jpg, .png"
+                onChange={onChangeImage}
+              />
             </div>
             <textarea
               rows={50}
@@ -90,7 +120,7 @@ export default function NewBoard() {
             ></textarea>
           </StContainer>
           <StBtnContainer>
-            <StBtn type="button" onClick={cancel}>
+            <StBtn type="button" onClick={handleCancel}>
               취소
             </StBtn>
             <StRedBtn type="submit">글쓰기</StRedBtn>

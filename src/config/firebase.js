@@ -7,6 +7,7 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -19,6 +20,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+export const storage = getStorage(app);
 export const db = getFirestore(app);
 export const auth = getAuth();
 const provider = new GithubAuthProvider();
