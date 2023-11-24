@@ -83,7 +83,10 @@ export const StDiv = styled.div`
 
   h2 {
     font-size: 2rem;
+    text-align: center;
     max-width: 1200px;
     margin: 30px 0px 20px 0px;
+
+    font-family: 'DNFBitBitv2';
   }
 `;
