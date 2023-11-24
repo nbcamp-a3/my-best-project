@@ -36,7 +36,7 @@ export default function AllBoardCard({ data }) {
           <StAllBoardLikedButton>❤️</StAllBoardLikedButton>
         </StTimeBox>
       </StAllBoardNameBox>
-      <Link to={`/boards/${data.uid}`}>
+      <Link to={`/boards/${data.id}`}>
         <StAllBoardContentBox>
           <StAllBoardTitleBox>
             <StAllBoarTitle>{data.title}</StAllBoarTitle>
