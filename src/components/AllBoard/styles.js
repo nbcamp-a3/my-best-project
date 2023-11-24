@@ -102,7 +102,6 @@ export const StAllBoardEmptyItem = styled.div`
   }
 `;
 
-
 export const StAllBoardNameBox = styled.div`
   display: flex;
   flex-direction: row;
