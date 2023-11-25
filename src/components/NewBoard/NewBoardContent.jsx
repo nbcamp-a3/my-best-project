@@ -9,6 +9,7 @@ import {
   StIconsDiv,
   StTitle,
   StTextarea,
+  StDownloadImg,
 } from 'components/NewBoard/styles';
 import { useLoggedIn } from 'hooks/useAuth';
 import { addDoc, collection } from 'firebase/firestore';
@@ -30,7 +31,7 @@ export default function NewBoardContent() {
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('project');
   const [github, setGithub] = useState('');
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState();
   //사진 첨부 안 할 시 산타르탄이 등장
   const defaultImage =
     'https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/Webp.net-gifmaker.gif';
@@ -76,13 +77,10 @@ export default function NewBoardContent() {
     const collectionRef = collection(db, 'boards');
     await addDoc(collectionRef, newBoard);
 
-    // 사진이 storage에 올라가는 시간 때문에 만약을 대비해 setTimeout 사용
-    setTimeout(() => {
-      alert('등록되었습니다😀');
-      setContent('');
-      setTitle('');
-      navigate(-1);
-    }, 1000);
+    alert('등록되었습니다😀');
+    setContent('');
+    setTitle('');
+    navigate(-1);
   };
 
   const handleCancel = () => {
@@ -114,11 +112,6 @@ export default function NewBoardContent() {
                 );
               })}
             </select>
-            <StImageFile
-              type="file"
-              accept=".gif, .jpg, .png"
-              onChange={onChangeImage}
-            />
             <StGitHub>
               GitHub:{' '}
               <input type="url" value={github} onChange={onChangeGithub} />
@@ -130,6 +123,17 @@ export default function NewBoardContent() {
             value={content}
             onChange={onChangeContent}
           ></StTextarea>
+          <div>
+            <StImageFile
+              type="file"
+              accept=".gif, .jpg, .png"
+              onChange={onChangeImage}
+            />
+            <StDownloadImg>
+              <p>이미지 미리보기</p>
+              <img src={image ? image : null} />
+            </StDownloadImg>
+          </div>
         </div>
         <StBtnContainer>
           <StBtn type="button" onClick={handleCancel}>

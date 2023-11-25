@@ -103,3 +103,12 @@ export const StGitHub = styled.span`
     white-space: nowrap;
   }
 `;
+
+export const StDownloadImg = styled.div`
+  margin-top: 15px;
+
+  img {
+    margin-top: 8px;
+    width: 150px;
+  }
+`;

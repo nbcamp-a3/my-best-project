@@ -3,6 +3,7 @@ import {
   StBtn,
   StBtnContainer,
   StDiv,
+  StDownloadImg,
   StGitHub,
   StIconsDiv,
   StImageFile,
@@ -72,7 +73,11 @@ export default function EditBoardContent() {
 
   const handleEditBoard = async (e) => {
     e.preventDefault();
-    if (data.title === editTitle && data.content === editContents) {
+    if (
+      data.title === editTitle &&
+      data.content === editContents &&
+      data.img === editImage
+    ) {
       alert('수정한 내용이 없습니다.');
       return;
     }
@@ -116,11 +121,6 @@ export default function EditBoardContent() {
                   );
                 })}
               </select>
-              <StImageFile
-                type="file"
-                accept=".gif, .jpg, .png"
-                onChange={onChangeEditImage}
-              />
               <StGitHub>
                 GitHub:
                 <input
@@ -136,6 +136,17 @@ export default function EditBoardContent() {
               onChange={onChangeEditContents}
               placeholder="내용을 입력하세요."
             ></StTextarea>
+            <div>
+              <StImageFile
+                type="file"
+                accept=".gif, .jpg, .png"
+                onChange={onChangeEditImage}
+              />
+              <StDownloadImg>
+                <p>이미지 미리보기</p>
+                <img src={editImage ? editImage : null} />
+              </StDownloadImg>
+            </div>
           </div>
           <StBtnContainer>
             <StBtn type="button" onClick={handleCancel}>
