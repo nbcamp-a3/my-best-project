@@ -1,53 +1,50 @@
 import styled from 'styled-components';
 import { COLORS } from 'constants/colors';
 
-export const StContainer = styled.div`
-  input {
-    font-size: 20px;
-    font-weight: bold;
-    width: 100%;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: ${COLORS.itembgColor};
+export const StTextarea = styled.textarea`
+  font-size: medium;
+  width: 100%;
+  resize: none;
+  background-color: ${COLORS.itembgColor};
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+`;
+export const StTitle = styled.input`
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: ${COLORS.itembgColor};
+`;
+
+export const StIconsDiv = styled.div`
+  margin-top: 20px;
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  background-color: ${COLORS.itembgColor};
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 1px solid gray;
+
+  p {
+    margin-right: 5px;
   }
 
-  textarea {
-    font-size: medium;
-    width: 100%;
-    resize: none;
-    background-color: ${COLORS.itembgColor};
-    padding: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+  select {
+    margin-right: 15px;
   }
+`;
 
-  div {
-    margin-top: 20px;
-    width: 100%;
-
-    display: flex;
-    justify-content: flex-start;
-    padding: 10px;
-    background-color: ${COLORS.itembgColor};
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom: 1px solid gray;
-
-    p {
-      margin-right: 5px;
-    }
-
-    select {
-      margin-right: 15px;
-    }
-
-    input {
-      padding: 0;
-      width: 30%;
-      font-size: small;
-      border-radius: 0;
-    }
-  }
+export const StImageFile = styled.input`
+  width: 20%;
+  font-size: small;
+  border-radius: 0;
 `;
 
 export const StBtnContainer = styled.div`
@@ -95,5 +92,17 @@ export const StDiv = styled.div`
     margin: 30px 0px 20px 0px;
 
     font-family: 'DNFBitBitv2';
+  }
+`;
+
+export const StGitHub = styled.span`
+  font-weight: 600;
+  width: 40%;
+  input {
+    width: 70%;
+    border-bottom: 1px solid black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;

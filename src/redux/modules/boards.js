@@ -21,9 +21,6 @@ const boards = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case SET_BOARDS:
-      payload.boards.sort((a, b) => {
-        return b.date - a.date;
-      });
       return payload.boards;
     case ADD_BOARD:
       return [payload, ...state];
