@@ -58,9 +58,8 @@ export const StTitle = styled.p`
 export const StBtn = styled.button`
   width: 65%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-top: 40px;
-  cursor: pointer;
 `;
 
 export const StGoListBtn = styled.button`
