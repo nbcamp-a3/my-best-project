@@ -62,13 +62,12 @@ export default function NewBoardContent() {
     const newBoard = {
       category: category,
       createdAt: new Date().toISOString(),
-      uid: loginState.uid,
       avatar: loginState.photoURL,
       userid: loginState.email,
       title,
       content,
       github,
-      authUid,
+      uid: authUid,
       img: image || defaultImage,
     };
     if (title === '' || content === '') {
