@@ -8,6 +8,10 @@ export const StModalContainer = styled.div`
   right: 25%;
   border-radius: 10px;
   border: 1px solid #e4ebf0;
+
+  @media screen and (max-width: 1200px) {
+    right: -150%;
+  }
 `;
 
 export const StArrowBox = styled.div`
@@ -22,6 +26,10 @@ export const StArrowBox = styled.div`
   transform-origin: 0 0;
   z-index: -1;
   border: 1px solid #e4ebf0;
+
+  @media screen and (max-width: 1200px) {
+    right: 185px;
+  }
 `;
 
 export const StUserInfo = styled.div`
@@ -34,7 +42,7 @@ export const StUserInfo = styled.div`
   img {
     margin-top: 30px;
     align-self: flex-start;
-    background-color: red;
+
     width: 20%;
     height: 50%;
     border-radius: 50%;
@@ -54,7 +62,6 @@ export const StNameEmailBox = styled.div`
     font-weight: 800;
     padding: 30px;
     word-break: break-all;
-    /* background-color: ; */
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
