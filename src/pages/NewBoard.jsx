@@ -18,45 +18,55 @@ import { categories } from 'components/AllBoard/AllBoardIndex';
 import { useDispatch } from 'react-redux';
 import { addBoard } from 'redux/modules/boards';
 import { storage } from 'config/firebase';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
+import { useInput } from 'hooks/useInput';
 
 export default function NewBoard() {
   const navigate = useNavigate();
   const { loginState } = useLoggedIn();
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [category, setCategory] = useState('project');
-  const [github, setGithub] = useState('');
+  const title = useInput('');
+  const content = useInput('');
+  const category = useInput('project');
+  const github = useInput('');
+
   const [image, setImage] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   //사진 첨부 안 할 시 산타르탄이 등장
   const defaultImage =
     'https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/Webp.net-gifmaker.gif';
 
-  const onChangeTitle = (e) => setTitle(e.target.value);
-  const onChangeContent = (e) => setContent(e.target.value);
-  const onChangeCategories = (e) => setCategory(e.target.value);
-  const onChangeGithub = (e) => setGithub(e.target.value);
   const onChangeImage = (e) => {
+    setIsLoading(true);
     //구분성을 위해 uuid 사용
     const imgs = ref(storage, `image/${uuidv4()}_${loginState.email}`);
-    uploadBytes(imgs, e.target.files[0]).then((data) => {
-      console.log(data, 'imgs');
-      getDownloadURL(data.ref)
-        .then((val) => {
-          setImage(val);
-        })
-        .catch((error) => {
-          console.log('error', error);
-          alert('사진 업로드에 실패했습니다.');
+    const uploadTask = uploadBytesResumable(imgs, e.target.files[0]);
+    uploadTask.on(
+      'state_changed',
+      null,
+      (error) => {
+        alert('사진 업로드에 실패했습니다.');
+        console.error(error);
+      },
+      () => {
+        getDownloadURL(imgs).then((downloadUrl) => {
+          setIsLoading(false);
+          setImage(downloadUrl);
         });
-    });
+      },
+    );
   };
 
   const handleAddBoard = async (e) => {
     e.preventDefault();
+
+    if (isLoading) {
+      alert('이미지 로딩중입니다.');
+      return;
+    }
+
     const newBoard = {
       category: category,
       createdAt: new Date().toISOString(),
@@ -77,13 +87,8 @@ export default function NewBoard() {
     const collectionRef = collection(db, 'boards');
     await addDoc(collectionRef, newBoard);
 
-    // 사진이 storage에 올라가는 시간 때문에 만약을 대비해 setTimeout 사용
-    setTimeout(() => {
-      alert('등록되었습니다😀');
-      setContent('');
-      setTitle('');
-      navigate(-1);
-    }, 1000);
+    alert('등록되었습니다😀');
+    navigate(-1);
   };
 
   const handleCancel = () => {
@@ -99,15 +104,10 @@ export default function NewBoard() {
         <h2>너의 프로젝트를 보여줘!</h2>
         <form onSubmit={handleAddBoard}>
           <div>
-            <StTitle
-              type="text"
-              placeholder="제목을 입력하세요."
-              value={title}
-              onChange={onChangeTitle}
-            />
+            <StTitle type="text" placeholder="제목을 입력하세요." {...title} />
             <StIconsDiv>
               <p>카테고리</p>
-              <select onChange={onChangeCategories}>
+              <select onChange={category.onChangeCategories}>
                 {categories.map((c) => {
                   return (
                     <option key={c.value} value={c.value}>
@@ -122,17 +122,16 @@ export default function NewBoard() {
                 onChange={onChangeImage}
               />
               <StGitHub>
-                GitHub:{' '}
-                <input type="url" value={github} onChange={onChangeGithub} />
+                GitHub: <input type="url" {...github} />
               </StGitHub>
             </StIconsDiv>
             <StTextarea
               rows={50}
               placeholder="내용을 입력하세요."
-              value={content}
-              onChange={onChangeContent}
+              {...content}
             ></StTextarea>
           </div>
+          {image && <img src={image} alt="" />}
           <StBtnContainer>
             <StBtn type="button" onClick={handleCancel}>
               취소
