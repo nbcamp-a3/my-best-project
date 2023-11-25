@@ -26,8 +26,8 @@ export default function BoardDetailContent() {
   }, [id]);
 
   const clickDelete = async () => {
-    if (!authEmail) return alert('로그인 후 이용해주세요.');
-    if (data.userid !== authEmail) return alert('작성자만 삭제할 수 있습니다.');
+    // if (!authEmail) return alert('로그인 후 이용해주세요.');
+    // if (data.userid !== authEmail) return alert('작성자만 삭제할 수 있습니다.');
     if (!window.confirm('삭제하시겠습니까?')) return;
     const boardRef = doc(db, 'boards', id);
     deleteDoc(boardRef).then(() => {
@@ -46,12 +46,14 @@ export default function BoardDetailContent() {
       </StAllContent>
       <StBtn>
         <FaGithub size="30" />
-        {authEmail === data.userid ? (
-          <Link to={`/boards/${id}/edit`}>
-            <FaEdit size="28" />
-          </Link>
-        ) : null}
-        <MdDeleteForever size="30" onClick={() => clickDelete()} />
+        {authEmail === data.userid && (
+          <>
+            <Link to={`/boards/${id}/edit`}>
+              <FaEdit size="28" />
+            </Link>
+            <MdDeleteForever size="30" onClick={() => clickDelete()} />
+          </>
+        )}
       </StBtn>
     </StAllContentBox>
   );
