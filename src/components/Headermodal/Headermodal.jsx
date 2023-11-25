@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { forwardRef, useEffect, useRef } from 'react';
 import { logout } from 'config/firebase';
-
-// import { useNavigate } from 'react-router-dom';
+import { useLoggedIn } from 'hooks/useAuth';
 
 import {
   StArrowBox,
@@ -12,17 +11,19 @@ import {
   StUserInfo,
 } from './style';
 
-export default function Headermodal() {
+function Headermodal({ loginState }, ref) {
+  // console.log(loginState);
+  console.log('ref:', ref);
   const handleLogout = () => logout();
 
   return (
-    <StModalContainer>
+    <StModalContainer ref={ref}>
       <StArrowBox />
       <StUserInfo>
-        <img alt="이미지" />
+        <img src={loginState.photoURL} alt="이미지" />
         <StNameEmailBox>
-          <h3>dfdafsdf</h3>
-          <p>alswnsgdfffsur11933542@gmail.com</p>
+          <h3>{loginState.displayName}</h3>
+          <p>{loginState.email}</p>
         </StNameEmailBox>
       </StUserInfo>
       <StMypage>마이페이지</StMypage>
@@ -30,3 +31,5 @@ export default function Headermodal() {
     </StModalContainer>
   );
 }
+
+export default forwardRef(Headermodal);

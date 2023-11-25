@@ -50,6 +50,11 @@ export const StMainContent = styled.div`
   display: flex;
   align-items: center;
   padding: 30px;
+  cursor: pointer;
+  transition: 0.4s;
+  &:hover {
+    background-color: #edebeb;
+  }
 
   & > div {
     display: flex;
@@ -64,17 +69,18 @@ export const StMainContent = styled.div`
   h2 {
     font-size: 40px;
     margin: 30px;
+    font-weight: 800;
   }
 
   p {
-    margin-top: 30px;
+    margin-top: 100px;
     margin-left: 30px;
   }
 `;
 
 export const StContentContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(2, 50%);
   gap: 30px;
   @media screen and (max-width: 1200px) {
     grid-template-columns: repeat(1, auto);
@@ -84,7 +90,6 @@ export const StContentContainer = styled.div`
 export const StContentBox = styled.div`
   width: 70%;
   height: 80%;
-
   justify-self: center;
   align-self: center;
   border-radius: 20px;
@@ -95,6 +100,11 @@ export const StContentBox = styled.div`
   padding: 10px;
   background-color: #f9f9f9;
   cursor: pointer;
+  transition: 0.4s;
+
+  &:hover {
+    background-color: #edebeb;
+  }
 
   img {
     width: 100%;
@@ -104,7 +114,7 @@ export const StContentBox = styled.div`
   }
 
   h2 {
-    font-size: 50px;
+    font-size: 40px;
     color: #333;
     margin: 30px;
   }
