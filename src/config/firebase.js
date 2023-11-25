@@ -26,11 +26,11 @@ export const auth = getAuth();
 const provider = new GithubAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 
-export const login = async () => {
+export const githubLogin = async () => {
   return signInWithPopup(auth, provider)
     .then((result) => {
+      console.log('login successful.');
       const user = result.user;
-      console.log(user);
       return user;
     })
     .catch(console.error);
