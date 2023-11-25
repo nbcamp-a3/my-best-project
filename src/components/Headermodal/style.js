@@ -87,6 +87,11 @@ export const StMypage = styled.div`
   font-weight: 800;
   border-bottom: 1px solid #e4ebf0;
   border-top: 1px solid #e4ebf0;
+  transition: 0.1s;
+
+  &:hover {
+    color: #edebeb;
+  }
 `;
 
 export const StLogout = styled.div`
@@ -98,4 +103,9 @@ export const StLogout = styled.div`
   color: #e8344e;
   border-radius: 0 0 10px 10px;
   cursor: pointer;
+  transition: 0.1s;
+
+  &:hover {
+    color: #edebeb;
+  }
 `;

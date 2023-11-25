@@ -21,6 +21,7 @@ export const StLoginBtn = styled.button`
   width: 100px;
   display: flex;
   height: 80px;
+
   align-items: center;
   justify-content: center;
   cursor: pointer;
