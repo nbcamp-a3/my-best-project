@@ -26,7 +26,6 @@ export default function Header() {
   }, [loginState]);
 
   useEffect(() => {
-    console.log(modalRef);
     document.addEventListener('mousedown', clickModalOutside);
     return () => {
       document.removeEventListener('mousedown', clickModalOutside);
@@ -60,7 +59,12 @@ export default function Header() {
               <VscAccount size="2em" />
             </StLoginBtn>
             {isModalOpen && (
-              <Headermodal ref={modalRef} loginState={loginState} />
+              <Headermodal
+                ref={modalRef}
+                loginState={loginState}
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+              />
             )}
           </StLogoBox>
         ) : (

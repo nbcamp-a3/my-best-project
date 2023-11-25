@@ -10,11 +10,13 @@ import {
   StNameEmailBox,
   StUserInfo,
 } from './style';
+import { Link } from 'react-router-dom';
 
-function Headermodal({ loginState }, ref) {
-  // console.log(loginState);
-  console.log('ref:', ref);
-  const handleLogout = () => logout();
+function Headermodal({ loginState, isModalOpen, setIsModalOpen }, ref) {
+  const handleLogout = () => {
+    logout();
+    setIsModalOpen(!isModalOpen);
+  };
 
   return (
     <StModalContainer ref={ref}>
@@ -26,7 +28,15 @@ function Headermodal({ loginState }, ref) {
           <p>{loginState.email}</p>
         </StNameEmailBox>
       </StUserInfo>
-      <StMypage>마이페이지</StMypage>
+      <Link to="/mypage">
+        <StMypage
+          onClick={() => {
+            setIsModalOpen(!isModalOpen);
+          }}
+        >
+          마이페이지
+        </StMypage>
+      </Link>
       <StLogout onClick={handleLogout}>로그아웃</StLogout>
     </StModalContainer>
   );
