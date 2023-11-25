@@ -13,5 +13,5 @@ export default function ProtectedRoute({ children }) {
     }
   }, [loginState, navigate]);
 
-  return <>{children}</>;
+  return <>{loginState && children}</>;
 }
