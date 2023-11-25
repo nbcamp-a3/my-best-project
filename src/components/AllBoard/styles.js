@@ -168,6 +168,7 @@ export const StAllBoardContentBox = styled.div`
 export const StAllBoarTitle = styled.div`
   margin-bottom: 20px;
   font-size: 30px;
+  font-weight: bold;
 `;
 
 export const StAllBoardContent = styled.div`
