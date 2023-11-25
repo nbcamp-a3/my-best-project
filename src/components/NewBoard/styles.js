@@ -18,7 +18,6 @@ export const StTitle = styled.input`
   border-radius: 10px;
   background-color: ${COLORS.itembgColor};
 `;
-
 export const StIconsDiv = styled.div`
   margin-top: 20px;
   width: 100%;
@@ -40,13 +39,11 @@ export const StIconsDiv = styled.div`
     margin-right: 15px;
   }
 `;
-
 export const StImageFile = styled.input`
   width: 20%;
   font-size: small;
   border-radius: 0;
 `;
-
 export const StBtnContainer = styled.div`
   width: 100%;
   display: flex;
@@ -59,6 +56,7 @@ export const StBtn = styled.button`
   background-color: gray;
   border-radius: 10px;
   font-size: medium;
+  font-weight: bold;
   cursor: pointer;
   transition: all 0.4s;
 
@@ -73,6 +71,7 @@ export const StRedBtn = styled.button`
   background-color: ${COLORS.primaryColor};
   border-radius: 10px;
   font-size: medium;
+  font-weight: bold;
   cursor: pointer;
   transition: all 0.4s;
 
@@ -80,7 +79,6 @@ export const StRedBtn = styled.button`
     color: white;
   }
 `;
-
 export const StDiv = styled.div`
   max-width: 1200px;
   margin: 0px auto;
@@ -94,7 +92,6 @@ export const StDiv = styled.div`
     font-family: 'DNFBitBitv2';
   }
 `;
-
 export const StGitHub = styled.span`
   font-weight: 600;
   width: 40%;
@@ -104,5 +101,14 @@ export const StGitHub = styled.span`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+`;
+
+export const StDownloadImg = styled.div`
+  margin-top: 15px;
+
+  img {
+    margin-top: 8px;
+    width: 150px;
   }
 `;

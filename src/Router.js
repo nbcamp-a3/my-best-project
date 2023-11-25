@@ -4,6 +4,7 @@ import Layout from 'components/Layout/Layout';
 import {
   AllBoard,
   BoardDetail,
+  EditBoard,
   Home,
   MyPage,
   NewBoard,
@@ -26,11 +27,11 @@ export default function Router() {
               </ProtectedRoute>
             }
           />
-           <Route
+          <Route
             path="/boards/:id/edit"
             element={
               <ProtectedRoute>
-                <NewBoard />
+                <EditBoard />
               </ProtectedRoute>
             }
           />
@@ -42,7 +43,6 @@ export default function Router() {
               </ProtectedRoute>
             }
           />
-
         </Routes>
       </Layout>
     </BrowserRouter>
