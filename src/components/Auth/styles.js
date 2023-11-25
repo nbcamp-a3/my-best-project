@@ -82,20 +82,6 @@ export const StSignForm = styled.form`
         outline: 2px solid ${COLORS.primaryColor};
       }
     }
-
-    & > button {
-      width: 100%;
-      padding: 1rem;
-      background-color: ${COLORS.primaryColor};
-      border-radius: 10px;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
   }
 `;
 
@@ -107,7 +93,7 @@ export const StSocialBox = styled.div`
 
 //
 export const StButton = styled.button`
-  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 1rem;
   width: 100%;
   border: none;
@@ -117,13 +103,31 @@ export const StButton = styled.button`
   font-weight: bold;
   line-height: 1rem;
   color: ${(props) => (props.$github ? 'white' : 'inherit')};
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 
   svg {
     margin-right: 5px;
     transform: translateY(1px);
   }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
+
+// & > button {
+//   width: 100%;
+//   padding: 1rem;
+//   background-color: ${COLORS.primaryColor};
+//   border-radius: 10px;
+//   font-weight: bold;
+//   color: white;
+//   cursor: pointer;
+
+//   &:hover {
+//     opacity: 0.8;
+//   }
+// }
 
 export const StCloseBtn = styled.button`
   position: absolute;
@@ -154,4 +158,10 @@ export const StGoToSignUpBtn = styled.button`
   line-height: 2rem;
   color: #666;
   cursor: pointer;
+`;
+
+export const StError = styled.div`
+  margin: 8px 0 16px;
+  font-weight: bold;
+  color: #e01e5a;
 `;

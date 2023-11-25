@@ -2,8 +2,10 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import {
   GithubAuthProvider,
+  createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
@@ -26,11 +28,34 @@ export const auth = getAuth();
 const provider = new GithubAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 
-export const login = async () => {
+export const emailPasswordSignup = async (formData) => {
+  const { email, password } = formData;
+
+  await createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log('signup successful.');
+      const user = userCredential.user;
+      return user;
+    })
+    .catch(console.error);
+};
+
+export const emailPasswordLogin = async (formData) => {
+  const { email, password } = formData;
+  await signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log('login successful.');
+      const user = userCredential.user;
+      return user;
+    })
+    .catch(console.error);
+};
+
+export const githubLogin = async () => {
   return signInWithPopup(auth, provider)
     .then((result) => {
+      console.log('login successful.');
       const user = result.user;
-      console.log(user);
       return user;
     })
     .catch(console.error);
