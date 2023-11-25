@@ -52,6 +52,7 @@ export default function NewBoard() {
   const handleAddBoard = async (e) => {
     e.preventDefault();
     const newBoard = {
+      date: new Date().getTime(),
       category: category,
       createdAt: new Date().toISOString(),
       uid: loginState.uid,
@@ -59,7 +60,7 @@ export default function NewBoard() {
       userid: loginState.email,
       title,
       content,
-      img: image === null ? image : defaultImage,
+      img: image[0] ? image : defaultImage,
     };
     if (title === '' || content === '') {
       alert('제목과 내용을 입력해주세요.');
@@ -76,7 +77,7 @@ export default function NewBoard() {
       setContent('');
       setTitle('');
       navigate(-1);
-    }, 2000);
+    }, 1000);
   };
 
   const handleCancel = () => {
