@@ -2,7 +2,9 @@ import React, { useCallback, useState } from 'react';
 import { StButton, StError, StGoToBackBtn, StSignForm } from './styles';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useInput } from 'hooks/useInput';
-import { emailPasswordSignup } from 'config/firebase';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from 'config/firebase';
+import { ERRORS } from 'config/errors';
 
 export default function SignUpScreen({ toggleComponent }) {
   const nickname = useInput('');
@@ -11,25 +13,27 @@ export default function SignUpScreen({ toggleComponent }) {
   const { value: passwordCheck, onChange: onChangePasswordCheck } =
     useInput('');
 
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [mismatch, setMismatch] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (mismatch || !email.value || !email.value) return;
+    setLoading(true);
+    if (isLoading || mismatch || !nickname.value || !email.value) return;
 
     try {
-      const formData = {
-        // nickname: nickname.value,
-        email: email.value,
+      const credentials = await createUserWithEmailAndPassword(
+        auth,
+        email.value,
         password,
-      };
-      emailPasswordSignup(formData);
-    } catch (e) {
-      console.log(e);
-      setError(e);
+      );
+      await updateProfile(credentials.user, {
+        displayName: nickname.value,
+      });
+    } catch (error) {
+      setError(ERRORS[error.code]);
     } finally {
       setLoading(false);
     }
@@ -109,7 +113,7 @@ export default function SignUpScreen({ toggleComponent }) {
         <div>
           <StButton
             type="submit"
-            disabled={mismatch || !email.value || !email.value}
+            disabled={mismatch || !nickname.value || !email.value}
           >
             가입하기
           </StButton>

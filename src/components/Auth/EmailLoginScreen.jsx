@@ -8,25 +8,31 @@ import {
 } from './styles';
 import { FaArrowLeft } from 'react-icons/fa6';
 import { useInput } from 'hooks/useInput';
-import { emailPasswordLogin } from 'config/firebase';
+import { auth } from 'config/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { ERRORS } from 'config/errors';
 
 export default function EmailLoginScreen({ toggleComponent }) {
   const email = useInput('');
   const password = useInput('');
   const [error, setError] = useState(false);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
+    if (isLoading || !email.value || !password.value) return;
+
     try {
-      const formData = {
-        email: email.value,
-        password: password.value,
-      };
-      emailPasswordLogin(formData);
-    } catch (e) {
-      setError(e);
+      await signInWithEmailAndPassword(
+        auth,
+        email.value.trim(),
+        password.value,
+      );
+    } catch (error) {
+      console.log(error.code);
+      setError(ERRORS[error.code]);
     } finally {
       setLoading(false);
     }
@@ -55,7 +61,7 @@ export default function EmailLoginScreen({ toggleComponent }) {
             type="password"
             {...password}
             autoComplete="current-password"
-            placeholder="비밀번호 입력"
+            placeholder="비밀번호 입력 (6자 이상)"
           />
         </div>
         <div>

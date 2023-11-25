@@ -161,7 +161,6 @@ export const StGoToSignUpBtn = styled.button`
 `;
 
 export const StError = styled.div`
-  margin: 8px 0 16px;
   font-weight: bold;
   color: #e01e5a;
 `;
