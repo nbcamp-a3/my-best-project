@@ -58,11 +58,18 @@ export const StMainContent = styled.div`
 
   & > div {
     display: flex;
+
+    @media screen and (max-width: 1200px) {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   img {
-    width: 100%;
-    height: 100%;
+    width: 600px;
+    height: 600px;
     border-radius: 20px;
   }
 
@@ -76,19 +83,27 @@ export const StMainContent = styled.div`
     margin-top: 100px;
     margin-left: 30px;
   }
+
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const StContentContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 50%);
   gap: 30px;
+  place-items: center;
   @media screen and (max-width: 1200px) {
     grid-template-columns: repeat(1, auto);
   }
 `;
 
 export const StContentBox = styled.div`
-  width: 70%;
+  width: 600px;
   height: 80%;
   justify-self: center;
   align-self: center;
@@ -101,14 +116,15 @@ export const StContentBox = styled.div`
   background-color: #f9f9f9;
   cursor: pointer;
   transition: 0.4s;
+  display: flex;
 
   &:hover {
     background-color: #edebeb;
   }
 
   img {
-    width: 100%;
-    height: 400px;
+    width: 550px;
+    height: 500px;
     border-radius: 20px;
     padding: 30px;
   }
@@ -117,11 +133,18 @@ export const StContentBox = styled.div`
     font-size: 40px;
     color: #333;
     margin: 30px;
+    font-weight: 800;
   }
 
   p {
     color: #333;
     margin: 30px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    height: 100%;
+    display: flex;
+    justify-content: center;
   }
 `;
 
