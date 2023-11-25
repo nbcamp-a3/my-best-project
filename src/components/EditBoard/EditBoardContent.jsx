@@ -144,7 +144,7 @@ export default function EditBoardContent() {
               />
               <StDownloadImg>
                 <p>이미지 미리보기</p>
-                <img src={editImage ? editImage : null} />
+                <img src={editImage || null} />
               </StDownloadImg>
             </div>
           </div>

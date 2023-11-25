@@ -13,7 +13,7 @@ import {
 } from 'components/NewBoard/styles';
 import { useLoggedIn } from 'hooks/useAuth';
 import { addDoc, collection } from 'firebase/firestore';
-import { db } from 'config/firebase';
+import { auth, db } from 'config/firebase';
 import { useNavigate } from 'react-router-dom';
 import { categories } from 'components/AllBoard/AllBoardIndex';
 import { useDispatch } from 'react-redux';
@@ -23,6 +23,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function NewBoardContent() {
+  const authUid = auth.currentUser?.uid;
   const navigate = useNavigate();
   const { loginState } = useLoggedIn();
   const dispatch = useDispatch();
@@ -67,7 +68,8 @@ export default function NewBoardContent() {
       title,
       content,
       github,
-      img: image[0] ? image : defaultImage,
+      authUid,
+      img: image || defaultImage,
     };
     if (title === '' || content === '') {
       alert('제목과 내용을 입력해주세요.');
@@ -131,7 +133,7 @@ export default function NewBoardContent() {
             />
             <StDownloadImg>
               <p>이미지 미리보기</p>
-              <img src={image ? image : null} />
+              <img src={image || null} />
             </StDownloadImg>
           </div>
         </div>
