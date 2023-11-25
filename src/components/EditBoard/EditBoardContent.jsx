@@ -104,15 +104,12 @@ export default function EditBoardContent() {
           <div>
             <StTitle
               type="text"
-              value={editTitle || ''}
+              value={editTitle}
               onChange={onChangeEditTitle}
             />
             <StIconsDiv>
               <p>카테고리</p>
-              <select
-                onChange={onChangeEditCategory}
-                value={editCategory || ''}
-              >
+              <select onChange={onChangeEditCategory} value={editCategory}>
                 {categories.map((c) => {
                   return (
                     <option key={c.value} value={c.value}>
@@ -125,14 +122,14 @@ export default function EditBoardContent() {
                 GitHub:
                 <input
                   type="url"
-                  value={editGithub || ''}
+                  value={editGithub}
                   onChange={onChangeEditGithub}
                 />
               </StGitHub>
             </StIconsDiv>
             <StTextarea
               rows={50}
-              value={editContents || ''}
+              value={editContents}
               onChange={onChangeEditContents}
               placeholder="내용을 입력하세요."
             ></StTextarea>
