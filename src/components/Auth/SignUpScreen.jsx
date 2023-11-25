@@ -1,10 +1,19 @@
-import React, { useCallback, useState } from 'react';
-import { StButton, StError, StGoToBackBtn, StSignForm } from './styles';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  StButton,
+  StError,
+  StGoToBackBtn,
+  StInputBox,
+  StSignForm,
+  StSubmitButtonBox,
+} from './styles';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useInput } from 'hooks/useInput';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from 'config/firebase';
 import { ERRORS } from 'config/errors';
+import { MdOutlineEmail, MdOutlinePermIdentity } from 'react-icons/md';
+import { RiLockPasswordFill, RiLockPasswordLine } from 'react-icons/ri';
 
 export default function SignUpScreen({ toggleComponent }) {
   const nickname = useInput('');
@@ -16,6 +25,11 @@ export default function SignUpScreen({ toggleComponent }) {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [mismatch, setMismatch] = useState(false);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +45,7 @@ export default function SignUpScreen({ toggleComponent }) {
       );
       await updateProfile(credentials.user, {
         displayName: nickname.value,
+        photoURL: process.env.REACT_APP_DEFAULT_IMG,
       });
     } catch (error) {
       setError(ERRORS[error.code]);
@@ -61,7 +76,10 @@ export default function SignUpScreen({ toggleComponent }) {
         <h2>회원가입</h2>
       </header>
       <StSignForm onSubmit={handleSubmit}>
-        <div>
+        <StInputBox>
+          <span>
+            <MdOutlinePermIdentity />
+          </span>
           <label htmlFor="nickname">닉네임</label>
           <input
             id="nickname"
@@ -69,10 +87,14 @@ export default function SignUpScreen({ toggleComponent }) {
             type="text"
             {...nickname}
             placeholder="닉네임 입력"
+            ref={inputRef}
             required
           />
-        </div>
-        <div>
+        </StInputBox>
+        <StInputBox>
+          <span>
+            <MdOutlineEmail />
+          </span>
           <label htmlFor="email">이메일</label>
           <input
             id="email"
@@ -83,8 +105,11 @@ export default function SignUpScreen({ toggleComponent }) {
             placeholder="이메일 입력"
             required
           />
-        </div>
-        <div>
+        </StInputBox>
+        <StInputBox>
+          <span>
+            <RiLockPasswordLine />
+          </span>
           <label htmlFor="password">비밀번호</label>
           <input
             id="password"
@@ -93,11 +118,14 @@ export default function SignUpScreen({ toggleComponent }) {
             value={password}
             onChange={handleChangePassword}
             autoComplete="current-password"
-            placeholder="비밀번호 입력"
+            placeholder="비밀번호 입력 (6자 이상)"
             required
           />
-        </div>
-        <div>
+        </StInputBox>
+        <StInputBox>
+          <span>
+            <RiLockPasswordFill />
+          </span>
           <label htmlFor="password-check">비밀번호 확인</label>
           <input
             id="password-check"
@@ -106,18 +134,18 @@ export default function SignUpScreen({ toggleComponent }) {
             value={passwordCheck}
             onChange={handleChangePasswordCheck}
             autoComplete="current-password"
-            placeholder="비밀번호 확인"
+            placeholder="비밀번호 확인 (6자 이상)"
             required
           />
-        </div>
-        <div>
+        </StInputBox>
+        <StSubmitButtonBox>
           <StButton
             type="submit"
-            disabled={mismatch || !nickname.value || !email.value}
+            disabled={mismatch || !nickname.value || !email.value || !password}
           >
             가입하기
           </StButton>
-        </div>
+        </StSubmitButtonBox>
         {mismatch && <StError>비밀번호가 일치하지 않습니다.</StError>}
         {error && <StError>{error}</StError>}
       </StSignForm>

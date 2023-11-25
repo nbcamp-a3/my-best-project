@@ -1,22 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   StSignForm,
   StGoToBackBtn,
   StGoToSignUpBtn,
   StButton,
   StError,
+  StInputBox,
+  StSubmitButtonBox,
 } from './styles';
 import { FaArrowLeft } from 'react-icons/fa6';
 import { useInput } from 'hooks/useInput';
 import { auth } from 'config/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { ERRORS } from 'config/errors';
+import { MdOutlineEmail } from 'react-icons/md';
+import { RiLockPasswordLine } from 'react-icons/ri';
 
 export default function EmailLoginScreen({ toggleComponent }) {
   const email = useInput('');
   const password = useInput('');
   const [error, setError] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +40,6 @@ export default function EmailLoginScreen({ toggleComponent }) {
         password.value,
       );
     } catch (error) {
-      console.log(error.code);
       setError(ERRORS[error.code]);
     } finally {
       setLoading(false);
@@ -44,29 +52,38 @@ export default function EmailLoginScreen({ toggleComponent }) {
         <h2>이메일 로그인</h2>
       </header>
       <StSignForm onSubmit={handleSubmit}>
-        <div>
+        <StInputBox>
           <label htmlFor="email">이메일</label>
+          <span>
+            <MdOutlineEmail />
+          </span>
           <input
             id="email"
             type="text"
             {...email}
             autoComplete="username"
             placeholder="이메일 입력"
+            ref={inputRef}
+            required
           />
-        </div>
-        <div>
+        </StInputBox>
+        <StInputBox>
           <label htmlFor="password">비밀번호</label>
+          <span>
+            <RiLockPasswordLine />
+          </span>
           <input
             id="password"
             type="password"
             {...password}
             autoComplete="current-password"
             placeholder="비밀번호 입력 (6자 이상)"
+            required
           />
-        </div>
-        <div>
+        </StInputBox>
+        <StSubmitButtonBox>
           <StButton type="submit">로그인</StButton>
-        </div>
+        </StSubmitButtonBox>
         {error && <StError>{error}</StError>}
       </StSignForm>
       <div>
