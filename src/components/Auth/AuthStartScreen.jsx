@@ -1,10 +1,10 @@
 import React from 'react';
 import { StButton } from './styles';
 import { FaGithub } from 'react-icons/fa';
-import { login } from 'config/firebase';
+import { githubLogin } from 'config/firebase';
 
 export default function AuthStartScreen({ toggleComponent }) {
-  const handleGithubLogin = () => login();
+  const handleGithubLogin = () => githubLogin();
 
   return (
     <>
