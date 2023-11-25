@@ -65,44 +65,72 @@ export const StSignForm = styled.form`
   margin-top: 2rem;
   width: 90%;
   div {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
     margin-top: 1rem;
-    label {
-      ${blind}
-    }
+    border: 1px solid #000;
+    border-radius: 10px;
 
-    input {
-      padding: 1rem;
-      width: 100%;
-      border: 1px solid #000;
-      border-radius: 10px;
-      transition: outline 0.1s ease-in-out;
-
-      &:focus {
-        border-color: transparent;
-        outline: 2px solid ${COLORS.primaryColor};
-      }
+    &:last-child {
+      border: none;
+      outline: none;
     }
   }
+`;
+
+export const StInputBox = styled.div`
+  label {
+    ${blind}
+  }
+
+  input {
+    padding: 1rem 1rem 1rem 0;
+    flex-grow: 2;
+  }
+
+  & > span {
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:focus-within {
+    border-color: transparent;
+    outline: 2px solid ${COLORS.primaryColor};
+  }
+`;
+
+export const StSubmitButtonBox = styled.div`
+  border: none !important;
 `;
 
 export const StSocialBox = styled.div`
   text-align: center;
-  span {
-  }
 `;
 
-//
 export const StButton = styled.button`
   margin-bottom: 1rem;
   padding: 1rem;
   width: 100%;
   border: none;
-  background-color: ${(props) => (props.$github ? '#333' : '#eef3f6')};
+  background-color: ${(props) => {
+    if (props.$github) return '#333';
+    return '#eef3f6';
+  }};
   border-radius: 10px;
   font-size: 1rem;
   font-weight: bold;
   line-height: 1rem;
-  color: ${(props) => (props.$github ? 'white' : 'inherit')};
+  color: ${(props) => {
+    if (props.$github) return 'white';
+    return 'inherit';
+  }};
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 
   svg {
@@ -114,20 +142,6 @@ export const StButton = styled.button`
     margin-bottom: 0;
   }
 `;
-
-// & > button {
-//   width: 100%;
-//   padding: 1rem;
-//   background-color: ${COLORS.primaryColor};
-//   border-radius: 10px;
-//   font-weight: bold;
-//   color: white;
-//   cursor: pointer;
-
-//   &:hover {
-//     opacity: 0.8;
-//   }
-// }
 
 export const StCloseBtn = styled.button`
   position: absolute;
@@ -161,6 +175,7 @@ export const StGoToSignUpBtn = styled.button`
 `;
 
 export const StError = styled.div`
+  margin-top: 1rem;
   font-weight: bold;
   color: #e01e5a;
 `;
