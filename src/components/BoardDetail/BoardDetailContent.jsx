@@ -13,6 +13,13 @@ import { FaGithub } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
 import { auth, db } from 'config/firebase';
 import { deleteDoc, doc, getDoc } from 'firebase/firestore';
+import {
+  StAllBoarId,
+  StAllBoardNameBoxes,
+  StAllboardName,
+  StAvatar,
+  StTimeBox,
+} from 'components/AllBoard/styles';
 
 export default function BoardDetailContent() {
   const { id } = useParams();
@@ -41,6 +48,23 @@ export default function BoardDetailContent() {
   return (
     <StAllContentBox key={data.uid}>
       <StAllContent>
+        <StAllBoardNameBoxes>
+          <StAllboardName>
+            <StAvatar $src={data.avatar}></StAvatar>
+            <StAllBoarId>{data.userid}</StAllBoarId>
+          </StAllboardName>
+          <StTimeBox>
+            <time>
+              {new Date(data.createdAt).toLocaleDateString('ko', {
+                year: '2-digit',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </time>
+          </StTimeBox>
+        </StAllBoardNameBoxes>
         <StImg $src={data.img} />
         <StTitle>{data.title}</StTitle>
         <StContent>{data.content}</StContent>

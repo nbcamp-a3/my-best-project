@@ -8,6 +8,17 @@ export const StBoardDetailMain = styled.div`
   align-items: center;
 `;
 
+export const StAllContentTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65%;
+  height: 100px;
+  border-radius: 20px;
+  background-color: ${COLORS.itembgColor};
+  margin-top: 50px;
+`;
+
 export const StImg = styled.div`
   background-image: url(${(props) => props.$src});
   width: 500px;
