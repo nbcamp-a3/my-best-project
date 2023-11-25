@@ -3,7 +3,7 @@ import { StAllBoardList, StWriteButton, StWriteButtonBox } from './styles';
 import AllBoardCard from './AllBoardCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { setBoards } from 'redux/modules/boards';
 import AllBoardEmptyCard from './AllBoardEmptyCard';
 import { db } from 'config/firebase';
@@ -15,7 +15,7 @@ export default function AllBoardList() {
   const selectedCategory = useSelector((store) => store.selectedCategory);
 
   useEffect(() => {
-    getDocs(collection(db, 'boards'))
+    getDocs(query(collection(db, 'boards'), orderBy('createdAt', 'desc')))
       .then((res) => {
         return res.docs.map((doc) => {
           return {

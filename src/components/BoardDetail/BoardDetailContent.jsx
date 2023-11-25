@@ -11,14 +11,14 @@ import {
 import { MdDeleteForever } from 'react-icons/md';
 import { FaGithub } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
-import { db } from 'config/firebase';
+import { auth, db } from 'config/firebase';
 import { deleteDoc, doc, getDoc } from 'firebase/firestore';
 
 export default function BoardDetailContent() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState({});
-
+  const authEmail = auth.currentUser?.email;
   useEffect(() => {
     const boardRef = doc(db, 'boards', id);
     getDoc(boardRef).then((res) => {
@@ -27,6 +27,8 @@ export default function BoardDetailContent() {
   }, [id]);
 
   const clickDelete = async () => {
+    if (!authEmail) return alert('로그인 후 이용해주세요.');
+    if (data.userid !== authEmail) return alert('작성자만 삭제할 수 있습니다.');
     if (!window.confirm('삭제하시겠습니까?')) return;
     const boardRef = doc(db, 'boards', id);
     deleteDoc(boardRef).then(() => {

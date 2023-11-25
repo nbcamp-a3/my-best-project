@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import {
   StBtnContainer,
-  StContainer,
   StBtn,
   StRedBtn,
   StDiv,
+  StGitHub,
+  StImageFile,
+  StIconsDiv,
+  StTitle,
+  StTextarea,
 } from 'components/NewBoard/styles';
 import { useLoggedIn } from 'hooks/useAuth';
 import { addDoc, collection } from 'firebase/firestore';
@@ -25,6 +29,7 @@ export default function NewBoard() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('project');
+  const [github, setGithub] = useState('');
   const [image, setImage] = useState([]);
   //사진 첨부 안 할 시 산타르탄이 등장
   const defaultImage =
@@ -33,6 +38,7 @@ export default function NewBoard() {
   const onChangeTitle = (e) => setTitle(e.target.value);
   const onChangeContent = (e) => setContent(e.target.value);
   const onChangeCategories = (e) => setCategory(e.target.value);
+  const onChangeGithub = (e) => setGithub(e.target.value);
   const onChangeImage = (e) => {
     //구분성을 위해 uuid 사용
     const imgs = ref(storage, `image/${uuidv4()}_${loginState.email}`);
@@ -59,7 +65,8 @@ export default function NewBoard() {
       userid: loginState.email,
       title,
       content,
-      img: image === null ? image : defaultImage,
+      github,
+      img: image[0] ? image : defaultImage,
     };
     if (title === '' || content === '') {
       alert('제목과 내용을 입력해주세요.');
@@ -76,7 +83,7 @@ export default function NewBoard() {
       setContent('');
       setTitle('');
       navigate(-1);
-    }, 2000);
+    }, 1000);
   };
 
   const handleCancel = () => {
@@ -91,14 +98,14 @@ export default function NewBoard() {
       <StDiv>
         <h2>너의 프로젝트를 보여줘!</h2>
         <form onSubmit={handleAddBoard}>
-          <StContainer>
-            <input
+          <div>
+            <StTitle
               type="text"
               placeholder="제목을 입력하세요."
               value={title}
               onChange={onChangeTitle}
             />
-            <div>
+            <StIconsDiv>
               <p>카테고리</p>
               <select onChange={onChangeCategories}>
                 {categories.map((c) => {
@@ -109,19 +116,23 @@ export default function NewBoard() {
                   );
                 })}
               </select>
-              <input
+              <StImageFile
                 type="file"
                 accept=".gif, .jpg, .png"
                 onChange={onChangeImage}
               />
-            </div>
-            <textarea
+              <StGitHub>
+                GitHub:{' '}
+                <input type="url" value={github} onChange={onChangeGithub} />
+              </StGitHub>
+            </StIconsDiv>
+            <StTextarea
               rows={50}
               placeholder="내용을 입력하세요."
               value={content}
               onChange={onChangeContent}
-            ></textarea>
-          </StContainer>
+            ></StTextarea>
+          </div>
           <StBtnContainer>
             <StBtn type="button" onClick={handleCancel}>
               취소

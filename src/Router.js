@@ -26,6 +26,14 @@ export default function Router() {
               </ProtectedRoute>
             }
           />
+           <Route
+            path="/boards/:id/edit"
+            element={
+              <ProtectedRoute>
+                <NewBoard />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/mypage"
             element={
@@ -34,6 +42,7 @@ export default function Router() {
               </ProtectedRoute>
             }
           />
+
         </Routes>
       </Layout>
     </BrowserRouter>

@@ -23,7 +23,7 @@ const boards = (state = initialState, action) => {
     case SET_BOARDS:
       return payload.boards;
     case ADD_BOARD:
-      return [...state, payload];
+      return [payload, ...state];
     default:
       return state;
   }
