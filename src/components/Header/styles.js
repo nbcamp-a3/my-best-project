@@ -8,7 +8,7 @@ export const Stcontainer = styled.div`
   padding-top: 30px;
   justify-content: space-around;
   @media screen and (max-width: 1200px) {
-    height: 500px;
+    height: 450px;
     flex-direction: column;
     align-items: center;
   }
@@ -21,7 +21,6 @@ export const StLoginBtn = styled.button`
   width: 100px;
   display: flex;
   height: 80px;
-  /* width: 10%; */
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -53,13 +52,12 @@ export const StNav = styled.div`
   justify-content: space-around;
 
   a {
-    padding: 40px;
     font-size: 20px;
     font-weight: 800;
   }
 
   @media screen and (max-width: 1200px) {
-    height: 300px;
+    height: 200px;
     flex-direction: column;
     align-items: center;
     border-bottom: 1px solid black;

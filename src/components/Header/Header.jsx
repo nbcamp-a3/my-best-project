@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { StLoginBtn, StLogo, StLogoBox, StNav, Stcontainer } from './styles';
 import mbplogoimg from 'assets/mbplogoimg.png';
 import { VscAccount } from 'react-icons/vsc';
@@ -11,18 +11,36 @@ import Headermodal from 'components/Headermodal/Headermodal';
 export default function Header() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const { loginState } = useLoggedIn();
+  const modalRef = useRef(null);
+  const loginBtnRef = useRef(null);
 
   const handleLoginClickedBtn = () => {
     setShowLoginModal(true);
-    setIsModalOpen(false);
   };
+
   const handleClosedBtn = () => setShowLoginModal(false);
 
   useEffect(() => {
     if (loginState) setShowLoginModal(false);
   }, [loginState]);
+
+  useEffect(() => {
+    console.log(modalRef);
+    document.addEventListener('mousedown', clickModalOutside);
+    return () => {
+      document.removeEventListener('mousedown', clickModalOutside);
+    };
+  });
+
+  const clickModalOutside = (event) => {
+    if (
+      isModalOpen &&
+      !modalRef.current?.contains(event.target) &&
+      !loginBtnRef.current?.contains(event.target)
+    )
+      setIsModalOpen(false);
+  };
 
   return (
     <>
@@ -37,11 +55,13 @@ export default function Header() {
         </StNav>
 
         {loginState ? (
-          <StLogoBox>
+          <StLogoBox ref={loginBtnRef}>
             <StLoginBtn onClick={() => setIsModalOpen(!isModalOpen)}>
               <VscAccount size="2em" />
             </StLoginBtn>
-            {isModalOpen && <Headermodal />}
+            {isModalOpen && (
+              <Headermodal ref={modalRef} loginState={loginState} />
+            )}
           </StLogoBox>
         ) : (
           <StLoginBtn onClick={handleLoginClickedBtn}>로그인</StLoginBtn>
