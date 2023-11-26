@@ -102,7 +102,7 @@ export const StCategory = styled.h2`
 
 export const StCommentsContainer = styled.div`
   border-radius: 15px;
-  width: 60%;
+  width: 50%;
   padding: 20px;
   margin: 20px 0px;
 
@@ -115,10 +115,10 @@ export const StCommentsContainer = styled.div`
 
   form {
     margin-bottom: 15px;
-    display: grid;
+    display: flex;
     align-items: center;
     justify-items: end;
-    grid-template-areas: '. input btn';
+    grid-template-areas: '. input input input btn';
     grid-template-columns: max-content;
   }
 
@@ -126,24 +126,27 @@ export const StCommentsContainer = styled.div`
     background-color: ${COLORS.itembgColor};
     border-radius: 10px;
     font-weight: 600;
-    width: 100%;
-    padding: 10px;
+    font-size: large;
+    width: 90%;
+    padding: 20px;
     grid-area: input;
   }
 `;
 
 export const StCommentBtn = styled.button`
   background-color: ${COLORS.primaryColor};
-  padding: 10px;
+  padding: ${(props) => props.$padding};
   margin-left: 10px;
   border-radius: 10px;
   grid-area: btn;
   font-size: medium;
   letter-spacing: 1px;
   transition: all 0.4s;
+  color: white;
+  font-weight: bold;
 
   &:hover {
-    color: white;
+    color: black;
   }
 `;
 

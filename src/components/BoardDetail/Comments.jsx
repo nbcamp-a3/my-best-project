@@ -95,7 +95,9 @@ export default function Comments() {
             value={comment}
             onChange={onChangeComment}
           />
-          <StCommentBtn type="submit">등록</StCommentBtn>
+          <StCommentBtn $padding="20px" type="submit">
+            등록
+          </StCommentBtn>
         </form>
       )}
       <ul>
@@ -120,6 +122,7 @@ export default function Comments() {
                 authData?.email === c.userNickname ? (
                   <StDelEditBtn>
                     <StCommentBtn
+                      $padding="10px"
                       type="button"
                       onClick={() => {
                         handleDeleteComment(c.id);
