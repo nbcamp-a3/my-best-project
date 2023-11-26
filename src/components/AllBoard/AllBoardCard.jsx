@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StAllBoarId,
   StAllBoarTitle,
@@ -6,7 +6,6 @@ import {
   StAllBoardContentBox,
   StAllBoardImagePreview,
   StAllBoardItem,
-  StAllBoardLikedButton,
   StAllBoardNameBox,
   StAllBoardTitleBox,
   StAllboardName,
@@ -33,10 +32,9 @@ export default function AllBoardCard({ data }) {
               minute: '2-digit',
             })}
           </time>
-          <StAllBoardLikedButton>❤️</StAllBoardLikedButton>
         </StTimeBox>
       </StAllBoardNameBox>
-      <Link to={`/boards/${data.id}`}>
+      <Link to={`/boards/${data?.id}`}>
         <StAllBoardContentBox>
           <StAllBoardTitleBox>
             <StAllBoarTitle>{data.title}</StAllBoarTitle>

@@ -97,6 +97,7 @@ export const StContentContainer = styled.div`
   grid-template-columns: repeat(2, 50%);
   gap: 30px;
   place-items: center;
+
   @media screen and (max-width: 1200px) {
     grid-template-columns: repeat(1, auto);
   }
@@ -104,7 +105,7 @@ export const StContentContainer = styled.div`
 
 export const StContentBox = styled.div`
   width: 600px;
-  height: 80%;
+  height: 800px;
   justify-self: center;
   align-self: center;
   border-radius: 20px;
@@ -117,6 +118,9 @@ export const StContentBox = styled.div`
   cursor: pointer;
   transition: 0.4s;
   display: flex;
+
+  /* -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical; */
 
   &:hover {
     background-color: #edebeb;
@@ -139,6 +143,12 @@ export const StContentBox = styled.div`
   p {
     color: #333;
     margin: 30px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
   }
 
   @media screen and (max-width: 1200px) {

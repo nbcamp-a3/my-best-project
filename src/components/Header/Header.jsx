@@ -2,11 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { StLoginBtn, StLogo, StLogoBox, StNav, Stcontainer } from './styles';
 import mbplogoimg from 'assets/mbplogoimg.png';
 import { VscAccount } from 'react-icons/vsc';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import AuthModal from 'components/Auth/AuthModal';
 import { useLoggedIn } from 'hooks/useAuth';
 import { logout } from 'config/firebase';
 import Headermodal from 'components/Headermodal/Headermodal';
+import { categories } from 'components/AllBoard/AllBoardIndex';
+import { useDispatch } from 'react-redux';
+import { changeCategory } from 'redux/modules/selectedCategory';
 
 export default function Header() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -41,6 +44,22 @@ export default function Header() {
       setIsModalOpen(false);
   };
 
+  const categories1 = [...categories];
+
+  const category = categories1
+    .filter((item) => {
+      return item.value !== 'teamproject';
+    })
+    .map((item) => {
+      return item.value === 'project' ? { ...item, name: '과제' } : item;
+    });
+
+  const dispatch = useDispatch();
+
+  const handleSelectCategory = (value) => {
+    dispatch(changeCategory(value));
+  };
+
   return (
     <>
       <Stcontainer>
@@ -48,9 +67,23 @@ export default function Header() {
           <StLogo src={mbplogoimg} />
         </Link>
         <StNav>
-          <NavLink to="/boards">과제</NavLink>
-          <NavLink to="">알고리즘</NavLink>
-          <NavLink to="">튜터코멘트</NavLink>
+          {/* <NavLink to="/boards">과제</NavLink> */}
+          {category.map((c) => {
+            return (
+              <NavLink
+                to="/boards"
+                onClick={() => {
+                  handleSelectCategory(c.value);
+                }}
+                state={c.value}
+                key={c.value}
+              >
+                {c.name}
+              </NavLink>
+            );
+          })}
+          {/* <NavLink to="/boards/">알고리즘</NavLink>
+          <NavLink to="">튜터코멘트</NavLink> */}
         </StNav>
 
         {loginState ? (

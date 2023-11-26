@@ -66,6 +66,7 @@ export default function NewBoardContent() {
       content,
       github,
       uid: authData.uid,
+      like: 0,
       img: image || defaultImage,
       displayName: authData.displayName,
     };
