@@ -8,6 +8,17 @@ export const StBoardDetailMain = styled.div`
   align-items: center;
 `;
 
+export const StAllContentTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65%;
+  height: 100px;
+  border-radius: 20px;
+  background-color: ${COLORS.itembgColor};
+  margin-top: 50px;
+`;
+
 export const StImg = styled.div`
   background-image: url(${(props) => props.$src});
   width: 500px;
@@ -33,7 +44,6 @@ export const StAllContentBox = styled.div`
 `;
 
 export const StAllContent = styled.div`
-  height: 700px;
   width: 65%;
   display: flex;
   align-items: center;
@@ -48,11 +58,14 @@ export const StContent = styled.p`
   width: 100%;
   text-align: justify;
   padding: 15px;
+  font-size: 18px;
 `;
 
 export const StTitle = styled.p`
   padding: 15px;
-  font-size: larger;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 30px 0 30px 0;
 `;
 
 export const StBtn = styled.button`

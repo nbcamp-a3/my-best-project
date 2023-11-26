@@ -110,6 +110,15 @@ export const StAllBoardNameBox = styled.div`
   align-items: center;
 `;
 
+export const StAllBoardNameBoxes = styled.div`
+  display: flex;
+  font-size: 20px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-right: 30px;
+`;
+
 export const StAllboardName = styled.div`
   display: flex;
   justify-content: space-between;
@@ -159,6 +168,7 @@ export const StAllBoardContentBox = styled.div`
 export const StAllBoarTitle = styled.div`
   margin-bottom: 20px;
   font-size: 30px;
+  font-weight: bold;
 `;
 
 export const StAllBoardContent = styled.div`
