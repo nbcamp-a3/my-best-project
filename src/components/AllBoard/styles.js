@@ -167,6 +167,7 @@ export const StAllBoardContent = styled.div`
   margin-right: 15px;
   margin-left: 10px;
   width: 500px;
+  word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
