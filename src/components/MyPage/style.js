@@ -71,6 +71,27 @@ export const StMyAvatar = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+
+  label {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 36px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+
+  input {
+    display: none;
+  }
 `;
 
 export const StMyPageProfile = styled.div`

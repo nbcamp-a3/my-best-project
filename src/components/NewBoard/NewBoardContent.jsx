@@ -45,13 +45,11 @@ export default function NewBoardContent() {
     //구분성을 위해 uuid 사용
     const imgs = ref(storage, `image/${uuidv4()}_${loginState.email}`);
     uploadBytes(imgs, e.target.files[0]).then((data) => {
-      console.log(data, 'imgs');
       getDownloadURL(data.ref)
         .then((val) => {
           setImage(val);
         })
         .catch((error) => {
-          console.log('error', error);
           alert('사진 업로드에 실패했습니다.');
         });
     });
