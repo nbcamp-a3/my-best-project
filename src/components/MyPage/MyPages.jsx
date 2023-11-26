@@ -19,7 +19,6 @@ export default function MyPage() {
   const [boards, setBoards] = useState([]);
 
   useEffect(() => {
-    console.log(authData.uid);
     getDocs(
       query(
         collection(db, 'boards'),

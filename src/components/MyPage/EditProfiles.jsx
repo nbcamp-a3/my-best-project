@@ -35,7 +35,9 @@ export default function EditProfiles() {
       photoURL: image,
     });
     alert('프로필이 변경되었습니다.');
-    navigate(-1);
+    authData.reload().then(() => {
+      navigate(-1);
+    });
   };
 
   const onChangeImage = (e) => {
