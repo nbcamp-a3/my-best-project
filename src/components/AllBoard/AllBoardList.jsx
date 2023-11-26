@@ -7,6 +7,7 @@ import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { setBoards } from 'redux/modules/boards';
 import AllBoardEmptyCard from './AllBoardEmptyCard';
 import { db } from 'config/firebase';
+import { categories } from './AllBoardIndex';
 
 export default function AllBoardList() {
   const boards = useSelector((store) => store.boards);
@@ -39,6 +40,11 @@ export default function AllBoardList() {
   return (
     <StAllBoardList>
       <StWriteButtonBox>
+        <h2>
+          {categories.map((c) => {
+            return c.value === selectedCategory && c.name;
+          })}
+        </h2>
         <Link to="/boards/new">
           <StWriteButton>글쓰기</StWriteButton>
         </Link>

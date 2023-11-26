@@ -76,7 +76,9 @@ export default function EditBoardContent() {
     if (
       data.title === editTitle &&
       data.content === editContents &&
-      data.img === editImage
+      data.img === editImage &&
+      data.category === editCategory &&
+      data.github === editGithub
     ) {
       alert('수정한 내용이 없습니다.');
       return;
@@ -121,6 +123,7 @@ export default function EditBoardContent() {
               <StGitHub>
                 GitHub:
                 <input
+                  placeholder="GitHub 주소를 입력해주세요."
                   type="url"
                   value={editGithub}
                   onChange={onChangeEditGithub}

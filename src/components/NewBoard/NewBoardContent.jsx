@@ -115,7 +115,12 @@ export default function NewBoardContent() {
             </select>
             <StGitHub>
               GitHub:{' '}
-              <input type="url" value={github} onChange={onChangeGithub} />
+              <input
+                placeholder="GitHub 주소를 입력해주세요."
+                type="url"
+                value={github}
+                onChange={onChangeGithub}
+              />
             </StGitHub>
           </StIconsDiv>
           <StTextarea

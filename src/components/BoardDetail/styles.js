@@ -91,3 +91,10 @@ export const StGoListBtnBox = styled.div`
   flex-direction: column;
   width: 65%;
 `;
+
+export const StCategory = styled.h2`
+  margin: 20px;
+  letter-spacing: 2px;
+  font-size: xx-large;
+  font-family: 'DNFBitBitv2';
+`;
