@@ -52,7 +52,9 @@ export default function MyPage() {
       <StMyPageContainer>
         <StMyPageProfileHeader>
           <div>안녕하세요, {authData.displayName ?? authData.email}님😊</div>
-          <button>프로필 수정 {'>'} </button>
+          <Link to={`/mypage/edit`}>
+            <button>프로필 수정 {'>'} </button>
+          </Link>
         </StMyPageProfileHeader>
         <StMyPageProfileMain>
           <StMyPageProfile>

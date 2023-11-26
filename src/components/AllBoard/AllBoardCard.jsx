@@ -21,7 +21,7 @@ export default function AllBoardCard({ data }) {
       <StAllBoardNameBox>
         <StAllboardName>
           <StAvatar $src={data.avatar}></StAvatar>
-          <StAllBoarId>{data.userid}</StAllBoarId>
+          <StAllBoarId>{data.displayName ?? data.userid}</StAllBoarId>
         </StAllboardName>
         <StTimeBox>
           <time>

@@ -10,6 +10,7 @@ import {
   NewBoard,
   ProtectedRoute,
 } from 'pages';
+import EditProfile from 'pages/EditProfile';
 
 export default function Router() {
   return (
@@ -40,6 +41,14 @@ export default function Router() {
             element={
               <ProtectedRoute>
                 <MyPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/mypage/edit"
+            element={
+              <ProtectedRoute>
+                <EditProfile />
               </ProtectedRoute>
             }
           />

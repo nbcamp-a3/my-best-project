@@ -23,7 +23,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function NewBoardContent() {
-  const authUid = auth.currentUser?.uid;
+  const authes = auth.currentUser;
   const navigate = useNavigate();
   const { loginState } = useLoggedIn();
   const dispatch = useDispatch();
@@ -67,9 +67,11 @@ export default function NewBoardContent() {
       title,
       content,
       github,
-      uid: authUid,
+      uid: authes.uid,
       img: image || defaultImage,
+      displayName: authes.displayName,
     };
+
     if (title === '' || content === '') {
       alert('제목과 내용을 입력해주세요.');
       return false;

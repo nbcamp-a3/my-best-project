@@ -150,3 +150,16 @@ export const StMyPageProjectImg = styled.div`
   border-radius: 30px;
   cursor: pointer;
 `;
+
+export const StMyPageProfileNameBox = styled.div`
+  input {
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-bottom: 1px solid ${COLORS.primaryColor};
+    margin-left: 10px;
+    width: 200px;
+    text-align: center;
+    outline: none;
+  }
+`;

@@ -1,5 +1,5 @@
 import React from 'react';
-import MyPages from 'components/MyPage/MyPage';
+import MyPages from 'components/MyPage/MyPages';
 
 export default function MyPage() {
   return (
