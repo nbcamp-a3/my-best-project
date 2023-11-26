@@ -23,7 +23,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function NewBoardContent() {
-  const authes = auth.currentUser;
+  const authData = auth.currentUser;
   const navigate = useNavigate();
   const { loginState } = useLoggedIn();
   const dispatch = useDispatch();
@@ -65,9 +65,9 @@ export default function NewBoardContent() {
       title,
       content,
       github,
-      uid: authes.uid,
+      uid: authData.uid,
       img: image || defaultImage,
-      displayName: authes.displayName,
+      displayName: authData.displayName,
     };
 
     if (title === '' || content === '') {
