@@ -25,6 +25,7 @@ export default function EditProfiles() {
   const { value: changeNickName, onChange } = useInput(authData.displayName);
 
   const onClick = (e) => {
+    console.log('click');
     e.preventDefault();
     if (!changeNickName) return alert('닉네임을 입력해주세요.');
     if (changeNickName === authData.displayName && !image)
@@ -33,10 +34,11 @@ export default function EditProfiles() {
     updateProfile(authData, {
       displayName: changeNickName,
       photoURL: image,
-    });
-    alert('프로필이 변경되었습니다.');
-    authData.reload().then(() => {
-      navigate(-1);
+    }).then(() => {
+      alert('프로필이 변경되었습니다.');
+      authData.reload().then(() => {
+        navigate(-1);
+      });
     });
   };
 
