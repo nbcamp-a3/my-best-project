@@ -23,7 +23,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function NewBoardContent() {
-  const authUid = auth.currentUser?.uid;
+  const authData = auth.currentUser;
   const navigate = useNavigate();
   const { loginState } = useLoggedIn();
   const dispatch = useDispatch();
@@ -45,13 +45,11 @@ export default function NewBoardContent() {
     //구분성을 위해 uuid 사용
     const imgs = ref(storage, `image/${uuidv4()}_${loginState.email}`);
     uploadBytes(imgs, e.target.files[0]).then((data) => {
-      console.log(data, 'imgs');
       getDownloadURL(data.ref)
         .then((val) => {
           setImage(val);
         })
         .catch((error) => {
-          console.log('error', error);
           alert('사진 업로드에 실패했습니다.');
         });
     });
@@ -67,9 +65,11 @@ export default function NewBoardContent() {
       title,
       content,
       github,
-      uid: authUid,
+      uid: authData.uid,
       img: image || defaultImage,
+      displayName: authData.displayName,
     };
+
     if (title === '' || content === '') {
       alert('제목과 내용을 입력해주세요.');
       return false;

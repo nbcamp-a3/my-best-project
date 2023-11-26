@@ -71,6 +71,27 @@ export const StMyAvatar = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+
+  label {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 36px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+
+  input {
+    display: none;
+  }
 `;
 
 export const StMyPageProfile = styled.div`
@@ -149,4 +170,17 @@ export const StMyPageProjectImg = styled.div`
   background-position: center;
   border-radius: 30px;
   cursor: pointer;
+`;
+
+export const StMyPageProfileNameBox = styled.div`
+  input {
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-bottom: 1px solid ${COLORS.primaryColor};
+    margin-left: 10px;
+    width: 200px;
+    text-align: center;
+    outline: none;
+  }
 `;

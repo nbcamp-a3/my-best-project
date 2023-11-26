@@ -57,7 +57,7 @@ export default function BoardDetailContent() {
         <StAllBoardNameBoxes>
           <StAllboardName>
             <StAvatar $src={data.avatar}></StAvatar>
-            <StAllBoarId>{data.userid}</StAllBoarId>
+            <StAllBoarId>{data.displayName ?? data.userid}</StAllBoarId>
           </StAllboardName>
           <StTimeBox>
             <time>
