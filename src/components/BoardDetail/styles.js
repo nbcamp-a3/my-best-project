@@ -59,6 +59,7 @@ export const StContent = styled.p`
   text-align: justify;
   padding: 15px;
   font-size: 18px;
+  word-break: break-all;
 `;
 
 export const StTitle = styled.p`
@@ -97,4 +98,79 @@ export const StCategory = styled.h2`
   letter-spacing: 2px;
   font-size: xx-large;
   font-family: 'DNFBitBitv2';
+`;
+
+export const StCommentsContainer = styled.div`
+  border-radius: 15px;
+  width: 60%;
+  padding: 20px;
+  margin: 20px 0px;
+
+  li {
+    background-color: ${COLORS.itembgColor};
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+  }
+
+  form {
+    margin-bottom: 15px;
+    display: grid;
+    align-items: center;
+    justify-items: end;
+    grid-template-areas: '. input btn';
+    grid-template-columns: max-content;
+  }
+
+  input {
+    background-color: ${COLORS.itembgColor};
+    border-radius: 10px;
+    font-weight: 600;
+    width: 100%;
+    padding: 10px;
+    grid-area: input;
+  }
+`;
+
+export const StCommentBtn = styled.button`
+  background-color: ${COLORS.primaryColor};
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 10px;
+  grid-area: btn;
+  font-size: medium;
+  letter-spacing: 1px;
+  transition: all 0.4s;
+
+  &:hover {
+    color: white;
+  }
+`;
+
+export const StUserName = styled.p`
+  font-weight: 600;
+  font-size: large;
+`;
+
+export const StCommentDate = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0px 15px 0px;
+
+  p {
+    font-size: medium;
+  }
+`;
+
+export const StComment = styled.p`
+  font-size: xx-large;
+  font-family: 'DNFBitBitv2';
+  letter-spacing: 2px;
+
+  margin-bottom: 20px;
+`;
+
+export const StDelEditBtn = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;

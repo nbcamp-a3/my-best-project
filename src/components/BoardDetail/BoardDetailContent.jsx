@@ -21,11 +21,13 @@ import {
   StTimeBox,
 } from 'components/AllBoard/styles';
 import { categories } from 'components/AllBoard/AllBoardIndex';
+import { useSelector } from 'react-redux';
 
 export default function BoardDetailContent() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState({});
+  const selectedCategory = useSelector((state) => state.selectedCategory);
   const authEmail = auth.currentUser?.email;
   useEffect(() => {
     const boardRef = doc(db, 'boards', id);
@@ -48,11 +50,13 @@ export default function BoardDetailContent() {
   if (!data) return null;
   return (
     <StAllContentBox key={data.uid}>
-      <StCategory>
-        {categories.map((c) => {
-          return c.value === data.category && c.name;
-        })}
-      </StCategory>
+      <Link to={'/boards'}>
+        <StCategory>
+          {categories.map((c) => {
+            return c.value === selectedCategory && c.name;
+          })}
+        </StCategory>
+      </Link>
       <StAllContent>
         <StAllBoardNameBoxes>
           <StAllboardName>
