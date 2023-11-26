@@ -25,7 +25,6 @@ export default function EditProfiles() {
   const { value: changeNickName, onChange } = useInput(authData.displayName);
 
   const onClick = (e) => {
-    console.log('click');
     e.preventDefault();
     if (!changeNickName) return alert('닉네임을 입력해주세요.');
     if (changeNickName === authData.displayName && !image)
