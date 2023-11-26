@@ -31,6 +31,7 @@ export const StAllboardIndexWrapper = styled.div`
 `;
 
 export const StAllboardIndexes = styled.div`
+  letter-spacing: 2px;
   border: 2px solid ${COLORS.primaryColor};
   border-radius: 10px;
   width: 200px;
@@ -220,7 +221,15 @@ export const StWriteButton = styled.button`
 
 export const StWriteButtonBox = styled.div`
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+
+  h2 {
+    margin: 40px 0px 0px 60px;
+    letter-spacing: 2px;
+    font-family: 'DNFBitBitv2';
+    font-size: xx-large;
+  }
 `;
 
 export const StTimeBox = styled.div``;

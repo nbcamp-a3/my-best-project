@@ -48,6 +48,20 @@ export const StContent = styled.p`
   width: 100%;
   text-align: justify;
   padding: 15px;
+  word-break: break-all;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 30%;
+    background-color: #e8344e;
+    opacity: 0.5;
+
+    border-radius: 20px;
+  }
 `;
 
 export const StTitle = styled.p`
@@ -77,4 +91,11 @@ export const StGoListBtnBox = styled.div`
   align-items: center;
   flex-direction: column;
   width: 65%;
+`;
+
+export const StCategory = styled.h2`
+  margin: 20px;
+  letter-spacing: 2px;
+  font-size: xx-large;
+  font-family: 'DNFBitBitv2';
 `;

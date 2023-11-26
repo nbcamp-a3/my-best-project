@@ -6,12 +6,14 @@ import {
   StAllContent,
   StBtn,
   StAllContentBox,
+  StCategory,
 } from './styles';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit, FaGithub } from 'react-icons/fa';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { auth, db } from 'config/firebase';
 import { deleteDoc, doc, getDoc } from 'firebase/firestore';
+import { categories } from 'components/AllBoard/AllBoardIndex';
 
 export default function BoardDetailContent() {
   const { id } = useParams();
@@ -39,13 +41,22 @@ export default function BoardDetailContent() {
   if (!data) return null;
   return (
     <StAllContentBox key={data.uid}>
+      <StCategory>
+        {categories.map((c) => {
+          return c.value === data.category && c.name;
+        })}
+      </StCategory>
       <StAllContent>
         <StImg $src={data.img} />
         <StTitle>{data.title}</StTitle>
         <StContent>{data.content}</StContent>
       </StAllContent>
       <StBtn>
-        <FaGithub size="30" />
+        {data.github && (
+          <a href={data.github} target="blank">
+            <FaGithub size="30" />
+          </a>
+        )}
         {authEmail === data.userid && (
           <>
             <Link to={`/boards/${id}/edit`}>
