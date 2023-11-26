@@ -7,7 +7,7 @@ import {
   StMyPageProfileMain,
   StMyPageProfileNameBox,
 } from './style';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth, storage } from 'config/firebase';
 import { updateProfile } from 'firebase/auth';
 import { TbCameraCog } from 'react-icons/tb';
@@ -18,12 +18,14 @@ import { v4 as uuidv4 } from 'uuid';
 export default function EditProfiles() {
   const authData = auth.currentUser;
 
+  const navigate = useNavigate();
   const nickNameRef = useRef('');
   const [image, setImage] = useState();
 
   const { value: changeNickName, onChange } = useInput(authData.displayName);
 
-  const onClick = () => {
+  const onClick = (e) => {
+    e.preventDefault();
     if (!changeNickName) return alert('닉네임을 입력해주세요.');
     if (changeNickName === authData.displayName && !image)
       return alert('변경사항이 없습니다.');
@@ -33,7 +35,7 @@ export default function EditProfiles() {
       photoURL: image,
     });
     alert('프로필이 변경되었습니다.');
-    window.location.reload();
+    navigate(-1);
   };
 
   const onChangeImage = (e) => {

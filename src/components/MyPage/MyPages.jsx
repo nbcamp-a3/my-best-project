@@ -45,8 +45,6 @@ export default function MyPage() {
       });
   }, []);
 
-  console.log(boards);
-
   return (
     <>
       <StMyPageContainer>
