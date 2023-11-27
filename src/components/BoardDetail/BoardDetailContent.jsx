@@ -152,7 +152,7 @@ export default function BoardDetailContent() {
             </time>
           </StTimeBox>
         </StAllBoardNameBoxes>
-        <StImg $src={data.img} />
+        {/* <StImg $src={data.img} /> */}
         <StTitle>{data.title}</StTitle>
         {/* <StContent>{data.content}</StContent> */}
         <div

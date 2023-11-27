@@ -124,6 +124,8 @@ export const StContentContainer = styled.div`
 `;
 
 export const StContentBox = styled.div`
+  width: 600px;
+  height: 800px;
   justify-self: center;
   align-self: center;
   border-radius: 20px;
@@ -151,7 +153,7 @@ export const StContentBox = styled.div`
     padding: 30px;
   }
 
-  & > h2 {
+  h2 {
     font-size: 40px;
     color: #333;
     margin: 30px;
@@ -162,7 +164,7 @@ export const StContentBox = styled.div`
     color: #333;
     margin: 30px;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
     overflow: hidden;
     word-break: break-all;
@@ -189,12 +191,19 @@ export const StEditContentBox = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 7; */
-  height: 300px;
-  word-wrap: break-word;
-  overflow: hidden;
+  -webkit-line-clamp: 7;
   h2 {
     font-size: 1rem !important;
     margin: 0 !important;
   }
+`;
+
+export const StHomeTitle = styled.h2`
+  font-size: xx-large;
+  font-weight: bold;
+`;
+
+export const StHomeContent = styled.div`
+  font-size: large;
+  text-align: justify;
 `;
