@@ -28,7 +28,6 @@ export default function ContentContainer() {
   }, []);
 
   const sliced = boards.slice(0, 4);
-  console.log(sliced);
 
   return (
     <StContentContainer>

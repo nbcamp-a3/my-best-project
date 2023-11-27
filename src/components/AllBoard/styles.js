@@ -173,6 +173,7 @@ export const StAllBoardContent = styled.div`
   word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: justify;
   display: -webkit-box;
   -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
