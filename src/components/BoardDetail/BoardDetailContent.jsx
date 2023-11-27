@@ -130,7 +130,8 @@ export default function BoardDetailContent() {
       <Link to={'/boards'}>
         <StCategory>
           {categories.map((c) => {
-            return c.value === selectedCategory && c.name;
+            console.log(c.value, selectedCategory);
+            return c.value === data.category && c.name;
           })}
         </StCategory>
       </Link>
