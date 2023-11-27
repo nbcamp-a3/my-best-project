@@ -38,7 +38,11 @@ export default function AllBoardCard({ data }) {
         <StAllBoardContentBox>
           <StAllBoardTitleBox>
             <StAllBoarTitle>{data.title}</StAllBoarTitle>
-            <StAllBoardContent>{data.content}</StAllBoardContent>
+            {/* <StAllBoardContent>{data.content}</StAllBoardContent> */}
+            <StAllBoardContent
+              className="toastui-editor-contents"
+              dangerouslySetInnerHTML={{ __html: data.content }}
+            ></StAllBoardContent>
           </StAllBoardTitleBox>
           <StAllBoardImagePreview $src={data.img}></StAllBoardImagePreview>
         </StAllBoardContentBox>

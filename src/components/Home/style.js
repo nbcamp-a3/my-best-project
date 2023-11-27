@@ -65,18 +65,17 @@ export const StMainContent = styled.div`
       align-items: center;
       justify-content: center;
     }
+    h2 {
+      font-size: 40px;
+      margin: 30px;
+      font-weight: 800;
+    }
   }
 
   img {
     width: 600px;
     height: 600px;
     border-radius: 20px;
-  }
-
-  h2 {
-    font-size: 40px;
-    margin: 30px;
-    font-weight: 800;
   }
 
   p {
@@ -140,7 +139,7 @@ export const StContentBox = styled.div`
     font-weight: 800;
   }
 
-  p {
+  & > div {
     color: #333;
     margin: 30px;
     display: -webkit-box;
@@ -164,4 +163,15 @@ export const StPtag = styled.p`
   display: flex;
   height: 100px;
   align-items: center;
+`;
+
+export const StEditContentBox = styled.div`
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  h2 {
+    font-size: 1rem !important;
+  }
 `;
