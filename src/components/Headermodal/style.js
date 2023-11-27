@@ -42,6 +42,7 @@ export const StUserInfo = styled.div`
   img {
     margin-top: 30px;
     align-self: flex-start;
+    border: 1px solid #eee;
 
     width: 20%;
     height: 50%;
