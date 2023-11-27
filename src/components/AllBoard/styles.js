@@ -139,20 +139,13 @@ export const StAvatar = styled.div`
 
 export const StAllboardIndex = styled.div`
   margin: 20px 0 50px 0;
+  transition: 0.2s;
   font-weight: bold;
   cursor: pointer;
   &:hover {
     color: black;
   }
   color: ${(props) => (props.$isClicked ? 'black' : 'white')};
-`;
-
-export const StAllBoardLikedButton = styled.button`
-  border: none;
-  background-color: ${COLORS.itembgColor};
-  color: black;
-  font-size: 20px;
-  cursor: pointer;
 `;
 
 export const StAllBoarId = styled.div`

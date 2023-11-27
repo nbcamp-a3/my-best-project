@@ -177,3 +177,9 @@ export const StDelEditBtn = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
+export const StLikeBtn = styled.button`
+  p {
+    font-size: 23px;
+    font-weight: 800;
+  }
+`;
