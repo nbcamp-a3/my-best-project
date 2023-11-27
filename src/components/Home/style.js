@@ -7,9 +7,9 @@ export const StHomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 30px;
   height: 100%;
+  margin-bottom: 200px;
 `;
 
 export const StCommentBtnBox = styled.div`
@@ -41,54 +41,75 @@ export const StGoToListBtn = styled.button`
   }
 `;
 export const StMainContent = styled.div`
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  /* position: relative;
   width: 100%;
-  height: 150%;
+  height: 100%;
   background-color: #f9f9f9;
-  margin-bottom: 200px;
   border-radius: 20px;
   display: flex;
   align-items: center;
-  padding: 30px;
+  padding: 30px; */
+  padding: 2rem;
+  width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 20px;
   cursor: pointer;
   transition: 0.4s;
+  margin-bottom: 3rem;
   &:hover {
     background-color: #edebeb;
   }
 
   & > div {
-    display: flex;
-
     @media screen and (max-width: 1200px) {
       display: flex;
-      flex-direction: column-reverse;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
     }
     h2 {
       font-size: 40px;
-      margin: 30px;
+      margin: 30px 0;
       font-weight: 800;
     }
   }
 
-  img {
-    width: 600px;
-    height: 600px;
+  /* div > img {
+    width: 400px;
+    height: 400px;
     border-radius: 20px;
-  }
-
-  p {
-    margin-top: 100px;
-    margin-left: 30px;
-  }
+  } */
 
   @media screen and (max-width: 1200px) {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
+    margin-bottom: 100px;
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
+`;
+
+export const StMainImageBox = styled.div`
+  width: 40%;
+  text-align: center;
+
+  img {
+    width: 350px;
+    height: 350px;
+    border-radius: 20px;
+  }
+`;
+
+export const StMainInfoBox = styled.div`
+  width: 60%;
 `;
 
 export const StContentContainer = styled.div`
@@ -103,8 +124,6 @@ export const StContentContainer = styled.div`
 `;
 
 export const StContentBox = styled.div`
-  width: 600px;
-  height: 800px;
   justify-self: center;
   align-self: center;
   border-radius: 20px;
@@ -117,7 +136,7 @@ export const StContentBox = styled.div`
   cursor: pointer;
   transition: 0.4s;
   display: flex;
-
+  height: 100%;
   /* -webkit-line-clamp: 4;
   -webkit-box-orient: vertical; */
 
@@ -132,7 +151,7 @@ export const StContentBox = styled.div`
     padding: 30px;
   }
 
-  h2 {
+  & > h2 {
     font-size: 40px;
     color: #333;
     margin: 30px;
@@ -166,12 +185,16 @@ export const StPtag = styled.p`
 `;
 
 export const StEditContentBox = styled.div`
-  word-break: break-all;
+  /* word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 7;
+  -webkit-line-clamp: 7; */
+  height: 300px;
+  word-wrap: break-word;
+  overflow: hidden;
   h2 {
     font-size: 1rem !important;
+    margin: 0 !important;
   }
 `;

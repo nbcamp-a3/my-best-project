@@ -29,7 +29,6 @@ provider.setCustomParameters({ prompt: 'select_account' });
 export const githubLogin = async () => {
   return signInWithPopup(auth, provider)
     .then((result) => {
-      console.log('login successful.');
       const user = result.user;
       return user;
     })
@@ -39,7 +38,6 @@ export const githubLogin = async () => {
 export const logout = async () => {
   return signOut(auth)
     .then(() => {
-      console.log('Sign-out successful.');
       return null;
     })
     .catch(console.error);

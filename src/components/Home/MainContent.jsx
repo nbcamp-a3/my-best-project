@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react';
-import { StEditContentBox, StMainContent } from './style';
+import {
+  StEditContentBox,
+  StMainContent,
+  StMainImageBox,
+  StMainInfoBox,
+} from './style';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -11,12 +16,10 @@ export default function MainContent() {
 
   useEffect(() => {
     const randomNum1 = Math.floor(Math.random() * boards.length);
-
     const filtered = boards.filter((item, index) => {
       return randomNum1 === index;
     });
     setRandomData(filtered);
-    console.log('filtered:', filtered);
   }, [boards]);
 
   return (
@@ -29,17 +32,15 @@ export default function MainContent() {
               navigate(`/boards/${item.id}`);
             }}
           >
-            <div>
-              <div>
-                <img src={item.img} alt="이미지" />
-              </div>
-              <div>
-                <h2>{item.title}</h2>
-                <StEditContentBox
-                  dangerouslySetInnerHTML={{ __html: item.content }}
-                ></StEditContentBox>
-              </div>
-            </div>
+            <StMainImageBox>
+              <img src={item.img} alt="이미지" />
+            </StMainImageBox>
+            <StMainInfoBox>
+              <h2>{item.title}</h2>
+              <StEditContentBox
+                dangerouslySetInnerHTML={{ __html: item.content }}
+              ></StEditContentBox>
+            </StMainInfoBox>
           </StMainContent>
         );
       })}

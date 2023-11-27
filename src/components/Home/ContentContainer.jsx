@@ -25,10 +25,9 @@ export default function ContentContainer() {
       .then((data) => {
         dispatch(setBoards(data));
       });
-  }, []);
+  }, [dispatch]);
 
   const sliced = boards.slice(0, 4);
-  console.log(sliced);
 
   return (
     <StContentContainer>
