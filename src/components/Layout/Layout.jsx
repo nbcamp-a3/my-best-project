@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
-import { SMain } from './style';
+import { StContainer, StMain } from './styles';
 
 export default function Layout({ children }) {
   return (
-    <div>
+    <StContainer>
       <Header />
-      <SMain>{children}</SMain>
+      <StMain>{children}</StMain>
       <Footer />
-    </div>
+    </StContainer>
   );
 }

@@ -1,6 +1,21 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
+
+@font-face{
+	font-family: 'DNFBitBitv2';
+	font-style: normal;
+	font-weight: 400;
+	src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf') format('opentype')
+}
+
+@font-face {
+    font-family: 'ChosunGu';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -28,6 +43,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
     height: 100vh;
+	font-family: 'ChosunGu';
 }
 ol, ul, li {
 	list-style: none;
@@ -55,6 +71,7 @@ input, button, textarea{
 } 
 * { 
     box-sizing: border-box;
+	font-family: 'ChosunGu';
 }
 `;
 

@@ -1,6 +1,13 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { GithubAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import {
+  GithubAuthProvider,
+  getAuth,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -13,17 +20,31 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth();
+export const storage = getStorage(app);
+export const db = getFirestore(app);
+export const auth = getAuth();
 const provider = new GithubAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 
-export function login() {
-  signInWithPopup(auth, provider)
+export const githubLogin = async () => {
+  return signInWithPopup(auth, provider)
     .then((result) => {
       const user = result.user;
-      console.log(user);
       return user;
     })
     .catch(console.error);
-}
+};
+
+export const logout = async () => {
+  return signOut(auth)
+    .then(() => {
+      return null;
+    })
+    .catch(console.error);
+};
+
+export const userStateChange = (callback) => {
+  onAuthStateChanged(auth, (user) => {
+    callback(user);
+  });
+};
