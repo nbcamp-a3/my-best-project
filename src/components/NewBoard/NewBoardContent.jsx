@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   StBtnContainer,
   StBtn,
@@ -21,6 +21,7 @@ import { addBoard } from 'redux/modules/boards';
 import { storage } from 'config/firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
+import BoardEditor from 'components/BoardEditor/BoardEditor';
 
 export default function NewBoardContent() {
   const authData = auth.currentUser;
@@ -32,31 +33,43 @@ export default function NewBoardContent() {
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('project');
   const [github, setGithub] = useState('');
-  const [image, setImage] = useState();
+  // const [image, setImage] = useState();
+  const editorRef = useRef();
   //사진 첨부 안 할 시 산타르탄이 등장
   const defaultImage =
     'https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/Webp.net-gifmaker.gif';
 
   const onChangeTitle = (e) => setTitle(e.target.value);
-  const onChangeContent = (e) => setContent(e.target.value);
+  // const onChangeContent = (e) => setContent(e.target.value);
   const onChangeCategories = (e) => setCategory(e.target.value);
   const onChangeGithub = (e) => setGithub(e.target.value);
-  const onChangeImage = (e) => {
-    //구분성을 위해 uuid 사용
-    const imgs = ref(storage, `image/${uuidv4()}_${loginState.email}`);
-    uploadBytes(imgs, e.target.files[0]).then((data) => {
-      getDownloadURL(data.ref)
-        .then((val) => {
-          setImage(val);
-        })
-        .catch((error) => {
-          alert('사진 업로드에 실패했습니다.');
-        });
-    });
-  };
+  // const onChangeImage = (e) => {
+  //   //구분성을 위해 uuid 사용
+  //   const imgs = ref(storage, `image/${uuidv4()}_${loginState.email}`);
+  //   uploadBytes(imgs, e.target.files[0]).then((data) => {
+  //     getDownloadURL(data.ref)
+  //       .then((val) => {
+  //         setImage(val);
+  //       })
+  //       .catch((error) => {
+  //         alert('사진 업로드에 실패했습니다.');
+  //       });
+  //   });
+  // };
 
   const handleAddBoard = async (e) => {
     e.preventDefault();
+
+    const content = editorRef.current.set();
+
+    if (title === '') {
+      return alert('제목을 입력해주세요.');
+    }
+
+    if (content === '<p><br></p>') {
+      return alert('내용을 입력해주세요.');
+    }
+
     const newBoard = {
       category: category,
       createdAt: new Date().toISOString(),
@@ -67,18 +80,14 @@ export default function NewBoardContent() {
       github,
       uid: authData.uid,
       like: 0,
-      img: image || defaultImage,
+      img: defaultImage,
+      // img: image || defaultImage,
       displayName: authData.displayName,
     };
 
-    if (title === '' || content === '') {
-      alert('제목과 내용을 입력해주세요.');
-      return false;
-    }
     dispatch(addBoard(newBoard));
     const collectionRef = collection(db, 'boards');
     await addDoc(collectionRef, newBoard);
-
     alert('등록되었습니다😀');
     setContent('');
     setTitle('');
@@ -124,13 +133,16 @@ export default function NewBoardContent() {
               />
             </StGitHub>
           </StIconsDiv>
-          <StTextarea
+          <div>
+            <BoardEditor ref={editorRef} />
+          </div>
+          {/* <StTextarea
             rows={50}
             placeholder="내용을 입력하세요."
             value={content}
             onChange={onChangeContent}
-          ></StTextarea>
-          <div>
+          ></StTextarea> */}
+          {/* <div>
             <StImageFile
               type="file"
               accept=".gif, .jpg, .png"
@@ -140,7 +152,7 @@ export default function NewBoardContent() {
               <p>이미지 미리보기</p>
               <img src={image || null} />
             </StDownloadImg>
-          </div>
+          </div> */}
         </div>
         <StBtnContainer>
           <StBtn type="button" onClick={handleCancel}>

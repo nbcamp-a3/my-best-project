@@ -1,4 +1,5 @@
 import { categories } from 'components/AllBoard/AllBoardIndex';
+import BoardEditor from 'components/BoardEditor/BoardEditor';
 import {
   StBtn,
   StBtnContainer,
@@ -15,7 +16,7 @@ import { db, storage } from 'config/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useLoggedIn } from 'hooks/useAuth';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -43,6 +44,7 @@ export default function EditBoardContent() {
   const [editCategory, setEditCategory] = useState('');
   const [editGithub, setEditGithub] = useState('');
   const [editImage, setEditImage] = useState('');
+  const editorRef = useRef();
 
   const onChangeEditTitle = (e) => setEditTitle(e.target.value);
   const onChangeEditContents = (e) => setEditContents(e.target.value);
@@ -73,9 +75,12 @@ export default function EditBoardContent() {
 
   const handleEditBoard = async (e) => {
     e.preventDefault();
+
+    const content = editorRef.current.set();
+
     if (
       data.title === editTitle &&
-      data.content === editContents &&
+      content === editContents &&
       data.img === editImage &&
       data.category === editCategory &&
       data.github === editGithub
@@ -87,7 +92,7 @@ export default function EditBoardContent() {
       ...data,
       category: editCategory,
       title: editTitle,
-      content: editContents,
+      content,
       github: editGithub,
       img: editImage,
     };
@@ -130,12 +135,15 @@ export default function EditBoardContent() {
                 />
               </StGitHub>
             </StIconsDiv>
-            <StTextarea
+            <div>
+              <BoardEditor initialValue={editContents} ref={editorRef} />
+            </div>
+            {/* <StTextarea
               rows={50}
               value={editContents}
               onChange={onChangeEditContents}
               placeholder="내용을 입력하세요."
-            ></StTextarea>
+            ></StTextarea> */}
             <div>
               <StImageFile
                 type="file"

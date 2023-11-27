@@ -8,7 +8,7 @@ export default function ContexntBox({ data }) {
       <StContentBox key={data.id}>
         <img src={data.img} alt="이미지" />
         <h2>{data.title}</h2>
-        <p>{data.content}</p>
+        <div dangerouslySetInnerHTML={{ __html: data.content }}></div>
       </StContentBox>
     </Link>
   );

@@ -154,7 +154,11 @@ export default function BoardDetailContent() {
         </StAllBoardNameBoxes>
         <StImg $src={data.img} />
         <StTitle>{data.title}</StTitle>
-        <StContent>{data.content}</StContent>
+        {/* <StContent>{data.content}</StContent> */}
+        <div
+          className="toastui-editor-contents"
+          dangerouslySetInnerHTML={{ __html: data.content }}
+        ></div>
       </StAllContent>
       <StBtn>
         {data.github && (

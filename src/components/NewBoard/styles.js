@@ -83,7 +83,7 @@ export const StDiv = styled.div`
   max-width: 1200px;
   margin: 0px auto;
 
-  h2 {
+  & > h2 {
     font-size: 2rem;
     text-align: center;
     max-width: 1200px;

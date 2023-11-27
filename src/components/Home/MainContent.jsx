@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import { StMainContent } from './style';
+import { StEditContentBox, StMainContent } from './style';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 export default function MainContent() {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [randomData, setRandomData] = useState([]);
   const boards = useSelector((store) => store.boards);
 
@@ -21,24 +20,29 @@ export default function MainContent() {
   }, [boards]);
 
   return (
-<>
+    <>
       {randomData.map((item) => {
         return (
-          <StMainContent key={item.id} onClick={()=>{
-            navigate(`/boards/${item.id}`)
-          }}>
-          <div>
+          <StMainContent
+            key={item.id}
+            onClick={() => {
+              navigate(`/boards/${item.id}`);
+            }}
+          >
             <div>
-              <img src={item.img} alt="이미지" />
+              <div>
+                <img src={item.img} alt="이미지" />
+              </div>
+              <div>
+                <h2>{item.title}</h2>
+                <StEditContentBox
+                  dangerouslySetInnerHTML={{ __html: item.content }}
+                ></StEditContentBox>
+              </div>
             </div>
-            <div>
-              <h2>{item.title}</h2>
-              <p>{item.content}</p>
-            </div>
-          </div>
           </StMainContent>
         );
       })}
-</>
+    </>
   );
 }

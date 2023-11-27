@@ -14,7 +14,7 @@ import {
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
-function BoardEditor({ initialValue, height = '400px' }, ref) {
+function BoardEditor({ initialValue, height = '500px' }, ref) {
   const uploadURL = `image/${uuidv4()}`;
   const editorRef = useRef();
 
