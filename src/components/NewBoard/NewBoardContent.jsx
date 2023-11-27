@@ -10,6 +10,7 @@ import {
   StTitle,
   StTextarea,
   StDownloadImg,
+  StThumb,
 } from 'components/NewBoard/styles';
 import { useLoggedIn } from 'hooks/useAuth';
 import { addDoc, collection } from 'firebase/firestore';
@@ -33,7 +34,7 @@ export default function NewBoardContent() {
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('project');
   const [github, setGithub] = useState('');
-  // const [image, setImage] = useState();
+  const [image, setImage] = useState();
   const editorRef = useRef();
   //사진 첨부 안 할 시 산타르탄이 등장
   const defaultImage =
@@ -43,19 +44,19 @@ export default function NewBoardContent() {
   // const onChangeContent = (e) => setContent(e.target.value);
   const onChangeCategories = (e) => setCategory(e.target.value);
   const onChangeGithub = (e) => setGithub(e.target.value);
-  // const onChangeImage = (e) => {
-  //   //구분성을 위해 uuid 사용
-  //   const imgs = ref(storage, `image/${uuidv4()}_${loginState.email}`);
-  //   uploadBytes(imgs, e.target.files[0]).then((data) => {
-  //     getDownloadURL(data.ref)
-  //       .then((val) => {
-  //         setImage(val);
-  //       })
-  //       .catch((error) => {
-  //         alert('사진 업로드에 실패했습니다.');
-  //       });
-  //   });
-  // };
+  const onChangeImage = (e) => {
+    //구분성을 위해 uuid 사용
+    const imgs = ref(storage, `image/${uuidv4()}_${loginState.email}`);
+    uploadBytes(imgs, e.target.files[0]).then((data) => {
+      getDownloadURL(data.ref)
+        .then((val) => {
+          setImage(val);
+        })
+        .catch((error) => {
+          alert('사진 업로드에 실패했습니다.');
+        });
+    });
+  };
 
   const handleAddBoard = async (e) => {
     e.preventDefault();
@@ -80,8 +81,8 @@ export default function NewBoardContent() {
       github,
       uid: authData.uid,
       like: 0,
-      img: defaultImage,
-      // img: image || defaultImage,
+      // img: defaultImage,
+      img: image || defaultImage,
       displayName: authData.displayName,
     };
 
@@ -136,23 +137,20 @@ export default function NewBoardContent() {
           <div>
             <BoardEditor ref={editorRef} />
           </div>
-          {/* <StTextarea
-            rows={50}
-            placeholder="내용을 입력하세요."
-            value={content}
-            onChange={onChangeContent}
-          ></StTextarea> */}
-          {/* <div>
-            <StImageFile
-              type="file"
-              accept=".gif, .jpg, .png"
-              onChange={onChangeImage}
-            />
-            <StDownloadImg>
-              <p>이미지 미리보기</p>
-              <img src={image || null} />
-            </StDownloadImg>
-          </div> */}
+          <StThumb>
+            <span>썸네일</span>
+            <div>
+              <StImageFile
+                type="file"
+                accept=".gif, .jpg, .png"
+                onChange={onChangeImage}
+              />
+              <StDownloadImg>
+                <p>이미지 미리보기</p>
+                <img src={image || null} />
+              </StDownloadImg>
+            </div>
+          </StThumb>
         </div>
         <StBtnContainer>
           <StBtn type="button" onClick={handleCancel}>

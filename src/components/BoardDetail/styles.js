@@ -12,7 +12,7 @@ export const StAllContentTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 65%;
+  max-width: 65%;
   height: 100px;
   border-radius: 20px;
   background-color: ${COLORS.itembgColor};
@@ -44,7 +44,7 @@ export const StAllContentBox = styled.div`
 `;
 
 export const StAllContent = styled.div`
-  width: 65%;
+  max-width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -90,7 +90,7 @@ export const StGoListBtnBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 65%;
+  width: 100%;
 `;
 
 export const StCategory = styled.h2`

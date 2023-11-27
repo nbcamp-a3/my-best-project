@@ -6,8 +6,10 @@ export default function ContexntBox({ data }) {
   return (
     <Link to={`/boards/${data.id}`}>
       <StContentBox key={data.id}>
-        <img src={data.img} alt="이미지" />
-        <h2>{data.title}</h2>
+        <div>
+          <img src={data.img} alt="이미지" />
+          <h2>{data.title}</h2>
+        </div>
         <div dangerouslySetInnerHTML={{ __html: data.content }}></div>
       </StContentBox>
     </Link>
