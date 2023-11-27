@@ -112,3 +112,18 @@ export const StDownloadImg = styled.div`
     width: 150px;
   }
 `;
+
+export const StThumb = styled.div`
+  margin-top: 1rem;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: ${COLORS.itembgColor};
+
+  & > span {
+    display: block;
+    margin-bottom: 1rem;
+  }
+`;

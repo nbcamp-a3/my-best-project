@@ -75,6 +75,11 @@ export const StMainContent = styled.div`
       margin: 30px 0;
       font-weight: 800;
     }
+
+    div:last-child {
+      width: 100%;
+      font-size: 1.2rem;
+    }
   }
 
   /* div > img {
@@ -144,18 +149,26 @@ export const StContentBox = styled.div`
     background-color: #edebeb;
   }
 
-  img {
-    width: 550px;
-    height: 500px;
-    border-radius: 20px;
-    padding: 30px;
-  }
+  div:first-child {
+    text-align: center;
+    img {
+      width: 550px;
+      height: 500px;
+      border-radius: 20px;
+      padding: 30px;
+    }
 
-  & > h2 {
-    font-size: 40px;
-    color: #333;
-    margin: 30px;
-    font-weight: 800;
+    & > h2 {
+      font-size: 40px;
+      color: #333;
+      margin: 30px;
+      font-weight: 800;
+
+      width: 700px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   }
 
   & > div {
